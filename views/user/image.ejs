@@ -1,0 +1,182 @@
+<body>
+    <!-- Quick view -->
+
+
+
+    <main class="main">
+
+        <section class="mt-50 mb-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-detail accordion-detail">
+                            <div class="row mb-50">
+                               
+
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="detail-gallery">
+                                        <span class="zoom-icon"><i class="fi-rs-search"></i></span>
+                                        <!-- MAIN SLIDES -->
+                                        <div class="product-image-slider">
+                                            <figure class="border-radius-10">
+                                                <img class="default-img" src="/uploads/products/<%=response.Image[0] %>" alt="">
+                                            </figure>
+                                             <figure class="border-radius-10">
+                                                <img class="default-img"  src="/uploads/products/<%=response.Image[1] %>" alt="">
+                                            </figure>
+                                            <figure class="border-radius-10">
+                                                <img class="default-img" src="/uploads/products/<%=response.Image[2] %>" alt="">
+                                            </figure>
+                                            
+                                        </div>
+                                        <!-- THUMBNAILS -->
+                                        
+                                         
+                                        <div class="slider-nav-thumbnails pl-15 pr-15">
+                                           
+                                            <div><img src="/uploads/products/<%=response.Image[0] %>" alt="product image"></div>
+                                             <div><img src="/uploads/products/<%=response.Image[1] %>" alt="product image"></div>
+                                             <div><img src="/uploads/products/<%=response.Image[2] %>" alt="product image"></div>
+
+                                        </div>
+                                       
+                                    </div>
+                                    <!-- End Gallery -->
+                                    
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="detail-info">
+                                        <h2 class="title-detail">
+                                            <%=response.Productname%>
+                                        </h2>
+                                        <div class="product-detail-rating">
+                                            <div class="pro-details-brand">
+                                                <span> Description<a href="shop-grid-right.html">
+                                                        <%=response.ProductDescription%>
+                                                    </a></span>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="clearfix product-price-cover">
+                                            <div class="product-price primary-color float-left">
+                                                <ins><span class="text-brand">
+                                                        <%=response.Price%>
+                                                    </span></ins>
+                                                <!-- <ins><span class="old-price font-md ml-15">2000</span></ins>
+                                                <span class="save-price  font-md color3 ml-15">25% Off</span> -->
+                                            </div>
+                                        </div>
+                                        <div class="bt-1 border-color-1 mt-15 mb-15"></div>
+                                        <div class="short-desc mb-30">
+                                            <p></p>
+                                            <div class="product_sort_info font-xs mb-30">
+                                                <ul>
+                                                    <li class="mb-10"><i>QUANTITY:</i>
+                                                        <%=response.Quantity%>
+                                                    </li>
+                                                    <li class="mb-10"><i> CATEGORY:</i>
+                                                        <%=response.category%>
+                                                    </li>
+                                                    <li><i class="fi-rs-credit-card mr-5"></i> Cash on Delivery
+                                                        available</li>
+                                                </ul>
+                                            </div>
+                                           
+                                            <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+                                            <div class="detail-extralink">
+                                              
+                                            <% if(!locals.userName){%>
+                                                <div class="product-extra-link2">
+                                                    
+                                                    <a type="button" href="/login"
+                                                    aria-label="Add To Cart"  class="action-btn hover-up "  style="width: 6cm; background-color: black; color: white;" id="total">Add to cart</a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn hover-up"
+                                                        href="/login"><i class="fi-rs-heart"></i></a>
+                                                    
+                                                </div>
+                                                <%}else{%>
+                                                    <div class="product-extra-link2">
+                                                    
+                                                        <a style="background-color: black; width: 6cm; padding-bottom: 1cm; color: white;" type="submit" onclick="addToCart('<%= response._id %>')"
+                                                            class="button button-add-to-cart">Add to cart</a>
+                                                        <a  style="padding-bottom: 1cm;" class="action-btn hover-up" type="submit" onclick="addToWish('<%= response._id %>')"
+                                                            ><i class="fi-rs-heart"></i></a>
+                                                        
+                                                    </div>
+                                                    <%}
+                                            %>
+                                                
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                </div>
+
+
+
+
+        </section>
+    </main>
+
+    <script>
+        function addToCart(proId) {
+            // console.log("api vall");
+            console.log(proId);
+            
+            $.ajax ({
+                url: `/add-to-cart/${proId}`,
+                method: 'get',
+                success: (response) => {
+                     console.log(response,'haiii');
+                    if(response.status) {
+                        
+                        document.getElementById('total').innerHTML=response.cartCount
+
+                        Toastify({
+                            text: "ADDED TO YOUR CART",
+                            duration: 3000,
+                            gravity: "bottom",
+                            position: "center",
+                            style: {
+                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                            }
+                            }).showToast();
+                           
+                    }
+                }
+            })
+        }
+        function addToWish(proId) {
+            // console.log("api vall");
+            console.log(proId,"llllll");
+            
+            $.ajax ({
+                url: `/wishlist/${proId}`,
+                method: 'get',
+                success: (response) => {
+                   
+                    console.log(response);
+                    if(response.status) {
+                        // alert("wowww")
+                        // location.reload();
+                        Toastify({
+                            text: "ADDED TO YOUR WISHLIST",
+                            duration: 3000,
+                            gravity: "bottom",
+                            position: "center",
+                            style: {
+                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                
+                            }
+                            }).showToast();
+                           
+                    }
+                }
+            })
+        }
+        
+    </script>

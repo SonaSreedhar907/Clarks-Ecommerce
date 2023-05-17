@@ -1,0 +1,279 @@
+
+<section class="content-main">
+  <div class="content-header">
+    <div>
+      <h2 class="content-title card-title">Dashboard</h2>
+      <p>Whole data about your business here</p>
+    </div>
+    <div>
+      <a href="admin/sales" class="btn btn-primary"
+        ><i class="text-muted material-icons md-post_add"></i>Create report</a
+      >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card card-body mb-4">
+        <article class="icontext">
+          <span class="icon icon-sm rounded-circle bg-primary-light"
+            ><i class="text-primary material-icons md-monetization_on"></i
+          ></span>
+          <div class="text">
+            <h6 class="mb-1 card-title">Revenue</h6>
+            <span>Rs.<%= revenue.totalRevenue %></span>
+            <span class="text-sm"> Shipping fees are not included </span>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card card-body mb-4">
+        <article class="icontext">
+          <span class="icon icon-sm rounded-circle bg-success-light"
+            ><i class="text-success material-icons md-local_shipping"></i
+          ></span>
+          <div class="text">
+            <h6 class="mb-1 card-title">Orders</h6>
+            <span><%= value %></span>
+            <span class="text-sm"> Excluding orders in transit </span>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card card-body mb-4">
+        <article class="icontext">
+          <span class="icon icon-sm rounded-circle bg-warning-light"
+            ><i class="text-warning material-icons md-qr_code"></i
+          ></span>
+          <div class="text">
+            <h6 class="mb-1 card-title">Products</h6>
+            <span><%= result %></span>
+            <span class="text-sm"> In 19 Categories </span>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card card-body mb-4">
+        <article class="icontext">
+          <span class="icon icon-sm rounded-circle bg-info-light"
+            ><i class="text-info material-icons md-shopping_basket"></i
+          ></span>
+          <div class="text">
+            <h6 class="mb-1 card-title">Monthly Earning</h6>
+            <span>Rs.<%= income.AverageValue %></span>
+            <span class="text-sm"> Based in your local time. </span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-8 col-lg-12">
+      <div class="card mb-4">
+        <article class="card-body">
+          <h5 class="card-title">Sale statistics</h5>
+          <canvas id="BarChart" height="120px">
+
+          </canvas>
+        </article>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-xl-8 col-lg-12">
+          <div class="card mb-4">
+            <article class="card-body">
+              <h5  class="card-title">Category Wise Sales Statistics</h5>
+              <canvas id="donutchart" height="120px">
+              </canvas>
+            </article>
+          </div>
+          
+        </div>
+
+
+        <div class="row">
+          <div class="col-xl-8 col-lg-12">
+            <div class="card mb-4">
+              <article class="card-body">
+                <h5  class="card-title">Payment Statistics</h5>
+                <canvas id="doughnut" height="120px">
+                </canvas>
+              </article>
+            </div>
+            
+          </div>
+
+     
+
+
+          
+</section>
+<footer class="main-footer font-xs">
+  <div class="row pb-30 pt-15">
+    <div class="col-sm-6">
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      ©, Evara - HTML Ecommerce Template .
+    </div>
+    <div class="col-sm-6">
+      <div class="text-sm-end"></div>
+    </div>
+  </div>
+</footer>
+<canvas id="dataId" data-value="<%=arrayCount%>"></canvas>
+<canvas id="catId" data-value="<%=arrayCate%>"></canvas>
+
+<canvas id="paymentcountId" data-value="<%=paymentCount%>"></canvas>
+<canvas id="paymentcate" data-value="<%=paymentCate%>"></canvas>
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+<script>
+  
+
+
+  const countArray = $('#dataId').data('value')
+  const catArray = $('#catId').data('value')
+
+  let datas =  countArray.split(',').map(number => parseInt(number))
+  let category =  catArray.split(',')
+  console.log(datas)
+
+  var data = {
+  labels: category,
+  datasets: [
+    {
+      label: "My First Dataset",
+      data: datas,
+      backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56","#FF6B6B", "#FF7F50", "#FFA500","#00FF00", "#DC143C", "#9400D3"],
+      hoverOffset: 4,
+    },
+  ],
+};
+
+var options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    title: {
+      display: true,
+      text: "Sales",
+    },
+  },
+};
+
+var myChart = new Chart("donutchart", {
+  type: "doughnut",
+  data: data,
+  options: options,
+});
+
+  
+
+
+
+
+
+
+
+
+    
+   
+  
+  yValues=[<%= newArry %>]
+  console.log(yValues);
+
+   
+  var xValues = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  
+  var barColors = ["red", "green","blue","orange","brown","yellow","violet"];
+  
+  new Chart("BarChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues,
+        
+      }]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        text: "Sales"
+      }
+    }
+  });
+ 
+
+
+
+
+    
+  </script>
+<canvas id="paymentcountId" data-value="<%=paymentCount%>"></canvas>
+<canvas id="paymentcate" data-value="<%=paymentCate%>"></canvas>
+
+
+<script>
+    const count = $('#paymentcountId').data('value')
+  const cat = $('#paymentcate').data('value')
+
+  let paymentdatas =  count.split(',').map(number => parseInt(number))
+  let paymentcategory =  cat.split(',')
+  console.log(datas)
+
+  var data = {
+  labels: paymentcategory,
+  datasets: [
+    {
+      label: "My First Dataset",
+      data: paymentdatas,
+      backgroundColor: ["#FFA500","#36A2EB"],
+      hoverOffset: 4,
+    },
+  ],
+};
+
+var options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    title: {
+      display: true,
+      text: "Sales",
+    },
+  },
+};
+
+var myChart = new Chart("doughnut", {
+  type: "doughnut",
+  data: data,
+  options: options,
+});
+
+</script>

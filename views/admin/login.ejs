@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/assets/css/main.css">
+<div class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+        </div>
+    </div>
+</div>
+
+<div class="container py-5 text-center " style="background-color: white;">
+      <div class="row d-flex justify-content-center">
+        <div class="row">
+        <div class="col d-flex justify-content-center">
+            
+        </div>
+    </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12" style="margin-right: 163px; margin-top: 110px;">
+                                <div class="login_wrap widget-taber-content p-30 background-white border-radius-10 mb-md-5 mb-lg-0 mb-sm-5">
+                                    <div class="padding_eight_all bg-white text-center ">
+                                        <div class="heading_s1">
+                                            <% if (locals.loginerr) { %>
+                                                <p class="text-danger">Invalid Username/Password</p>
+                                            <% } %>
+                                           
+                                            <img src="/assets/imgs/theme/logo.png" style="width:60px;" alt="">
+                                            <h3 class="mb-30">Admin Login</h3>
+                                        </div>
+                                        <form action="/admin/login" method="post" >
+                                            <div class="form-group">
+                                                <input type="text"  name="email" placeholder="Email/Phone Number" value="admin" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input  type="password" name="password" placeholder="Password" value="pass" required>
+                                            </div>
+                                            <div class="login_footer form-group">
+                                                <div class="chek-form">
+                                                    <div class="custome-checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1">
+                                                        <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
+                                                    </div>
+                                                </div>
+                                                <a class="text-muted" href="#">Forgot password?</a> 
+                                            </div>
+                                           
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-fill-out btn-block hover-up" >Log in</button>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <a href="/admin/otplogin" class="btn btn-fill-out btn-block hover-up" >Log in with OTP</a>
+                                            </div> -->
+                                             <!-- {{!-- <p>Don't have an account? <a href="/signup">Signup!</a></p> --}} -->
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </div>
+</div>
+<script src="/admin-assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="/admin-assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="/admin-assets/js/vendors/select2.min.js"></script>
+<script src="/admin-assets/js/vendors/perfect-scrollbar.js"></script>
+<script src="/admin-assets/js/vendors/jquery.fullscreen.min.js"></script>
+<script src="/admin-assets/js/vendors/chart.js"></script>
+<!-- Main Script -->
+<script src="/admin-assets/js/main.js" type="text/javascript"></script>
+<script src="/admin-assets/js/custom-chart.js" type="text/javascript"></script>

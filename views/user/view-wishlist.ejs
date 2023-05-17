@@ -1,0 +1,138 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<main class="main">
+    <section class="mt-50 mb-50">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <% if(wishlistItems.length==0){%>
+              <!-- <div class="d-flex justify-content-center">
+                <img src="/assets/imgs/banners/emptywishlist" alt="" />
+              </div> -->
+              <!-- <h3 style="width: 10cm; margin-left: 11cm; font-family: Arial, Helvetica, sans-serif;">Your Wishlist Is Empty</h3>
+              <div class="d-flex pb-2" style="justify-content: center; align-items: center;">
+                <img src="\assets\imgs\banner\emptywishlist.jpg" alt="">
+                </div> -->
+                <div class="d-flex pb-2" style="justify-content: center; align-items: center;">
+                  <img src="\assets\imgs\banner\wishlistempty.png" alt="" style="width:430px; height:340px;">
+                  </div> 
+                <a href="/shop" style="width: 10cm; margin-left: 12cm;
+                       " class="btn btn-outline-dark-2 btn-block mb-3"><i class="icon-refresh"></i>CONTINUE SHOPPING</a>
+              <%} else{%>
+              <table class="table shopping-summery text-center">
+                <thead>
+                  <tr class="main-heading">
+                    <th scope="col" colspan="2">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% wishlistItems.forEach(function(wishlistItems){%>
+                  <tr>
+                    <td class="image product-thumbnail">
+                      <img
+                        src="/uploads/products/<%=wishlistItems.Image[0] %>"
+                        alt="#"
+                      />
+                    </td>
+                    <td class="product-des product-name">
+                      <h5 class="product-name">
+                        <a href="shop-product-right.html">
+                          <%=wishlistItems.Productname%>
+                        </a>
+                      </h5>
+                    </td>
+                    <td class="price" data-title="Price">
+                      <span> <%=wishlistItems.Price%> </span>
+                    </td>
+                    <td class="text-right" data-title="Cart">
+                      <button
+                        class="btn btn-sm"
+                        onclick="addtocart('<%=wishlistItems.item%>');swal({
+                          position: 'center',
+                          icon: 'success',
+                          title: 'Product is successfully added to cart',
+                          showConfirmButton: false,
+                          timer: 1500
+                        })"
+                      >
+                        <i class="fi-rs-shopping-bag mr-5"></i>Add to cart
+                      </button>
+                    </td>
+                    <td class="action" cartItemss-title="Remove">
+                      <button
+                        class="text-muted"
+                        onclick="removeItem('<%=wishlistItems._id%>','<%=wishlistItems.item%>')"
+                      >
+                        <i class="fi-rs-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <%}) %>
+                </tbody>
+                <%} %>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function addtocart(proId) {
+      console.log(proId);
+      $.ajax({
+        // /add-to-cart/:id
+        url: '/add-to-cart/' + proId,
+        method: 'get',
+        success: (response) => {
+          if (response.status) {
+            let count = $('#cart-count').html();
+            count = parseInt(count) + 1;
+            console.log(count);
+            $('#cart-count').html(count);
+          }
+        },
+      });
+    }
+    
+    function removeItem(wishlistId, prodId) {
+      console.log(wishlistId);
+      console.log(prodId);
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      }).then((result) => {
+       
+        if (result) {
+            console.log("this is ajax");
+          $.ajax({
+            url: '/delete_wishlist',
+            data: {
+              wishlistId: wishlistId,
+              productId: prodId,
+            },
+            method: 'DELETE',
+            success: (response) => {
+              if (response.removeProduct) {
+                location.reload();
+              }
+            },
+          });
+          swal(
+            'Deleted!',
+            'Product is deleted from the wishlist.',
+            'success'
+          );
+        }
+      });
+    }
+  </script>

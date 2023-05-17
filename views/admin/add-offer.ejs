@@ -1,0 +1,79 @@
+<!-- <div class="container">
+    <section>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h2 class="text-center mb-4">Add Offer</h2>
+            <form method="POST" action="/admin/add-offer">
+              <div class="mb-3">
+                <label for="offerType" class="form-label">Offer Type:</label>
+                <select class="form-select" name="offerType" id="offerType" required>
+                  <option value="">Select Offer Type</option>
+                  <option value="product">Product Offer</option>
+                  <option value="category">Category Offer</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="offerValue" class="form-label">Offer Value:</label>
+                <input type="number" class="form-control" name="offerValue" id="offerValue" required>
+              </div>
+              <div class="mb-3">
+                <label for="offerCode" class="form-label">Offer Code:</label>
+                <input type="text" class="form-control" name="offerCode" id="offerCode" required>
+              </div>
+              <div class="mb-3" id="productOfferFields" style="display: none;">
+                <label for="product" class="form-label">Product:</label>
+                <select class="form-select" name="product" id="product">
+                  <option value="">Select Product</option>
+                  <% products.forEach(function(product) { %>
+                  <option value="<%= product._id %>"><%= product.Productname %></option>
+                  <% }) %>
+                </select>
+              </div>
+              <div class="mb-3" id="categoryOfferFields" style="display: none;">
+                <label for="category" class="form-label">Category:</label>
+                <select class="form-select" name="category" id="category">
+                  <option value="">Select Category</option>
+                  <% categories.forEach(function(category) { %>
+                  <option value="<%= category.categoryName %>"><%= category.CategoryName %></option>
+                  <% }) %>
+                </select>
+              </div>
+                 <div class="form-group">
+                  <label for="start">Start Date</label>
+                  <input type="date" name="start" class="form-control" id="start" required>
+                </div>
+                <div class="form-group">
+                  <label for="expiry">Expiry Date</label>
+                  <input type="date" name="expiry" class="form-control" id="expiry" required>
+                </div>
+              <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add Offer</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <script>
+    const offerType = document.querySelector('#offerType');
+    const productOfferFields = document.querySelector('#productOfferFields');
+    const categoryOfferFields = document.querySelector('#categoryOfferFields');
+    const startInput = document.getElementById('start');
+        const expiryInput = document.getElementById('expiry');
+  
+    offerType.addEventListener('change', function() {
+      if (this.value === 'product') {
+        productOfferFields.style.display = 'block';
+        categoryOfferFields.style.display = 'none';
+      } else if (this.value === 'category') {
+        productOfferFields.style.display = 'none';
+        categoryOfferFields.style.display = 'block';
+      } else {
+        productOfferFields.style.display = 'none';
+        categoryOfferFields.style.display = 'none';
+      }
+    });
+  </script> -->

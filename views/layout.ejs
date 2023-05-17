@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Clarks</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/assets/imgs/theme/favicon.png"
+    />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+    <title>Welcome</title>
+  </head>
+  <body>
+            
+    <%- include('partials/userHeader') %> 
+    
+    <%-body%>
+
+    <%- include('partials/userFooter')%>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="/assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/plugins/slick.js"></script>
+    <script src="/assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/assets/js/plugins/wow.js"></script>
+    <script src="/assets/js/plugins/jquery-ui.js"></script>
+    <script src="/assets/js/plugins/perfect-scrollbar.js"></script>
+    <script src="/assets/js/plugins/magnific-popup.js"></script>
+    <script src="/assets/js/plugins/select2.min.js"></script>
+    <script src="/assets/js/plugins/waypoints.js"></script>
+    <script src="/assets/js/plugins/counterup.js"></script>
+    <script src="/assets/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/assets/js/plugins/images-loaded.js"></script>
+    <script src="/assets/js/plugins/isotope.js"></script>
+    <script src="/assets/js/plugins/scrollup.js"></script>
+    <script src="/assets/js/plugins/jquery.vticker-min.js"></script>
+    <script src="/assets/js/plugins/jquery.theia.sticky.js"></script>
+    <script src="/assets/js/plugins/jquery.elevatezoom.js"></script>
+    <!-- Template  JS -->
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/shop.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    
+<script>
+  // Get the logout link
+  const logoutLink = document.getElementById('logout-link');
+
+  // Add click event listener to the logout link
+  logoutLink?.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Show sweet alert confirmation dialog
+    swal({
+      title: "Are you sure?",
+      text: "You are about to logout.",
+      icon: "warning",
+      buttons: ["Cancel", "Logout"],
+      dangerMode: true,
+    })
+    .then((willLogout) => {
+      if (willLogout) {
+        // If user clicks on "Logout" button in sweet alert dialog, redirect to logout URL
+        window.location.href = "/logout";
+      }
+    });
+  });
+</script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+
+
+  
+
+    <script>
+        
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDiRRn1REsrNBMqc94WpJqakM5mrv40fyE",
+  authDomain: "clarks-f31db.firebaseapp.com",
+  projectId: "clarks-f31db",
+  storageBucket: "clarks-f31db.appspot.com",
+  messagingSenderId: "661087986786",
+  appId: "1:661087986786:web:4313840fee369494c91d3b",
+  measurementId: "G-0T96X4VCFT"
+};
+
+        firebase.initializeApp(firebaseConfig);
+        render();
+/*
+        function render(){
+            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
+                'size':'invisible',
+                'callback':(response)=>{
+                    onSignInSubmit()
+                }
+            })
+            recaptchaVerifier.render();
+        }
+		*/
+
+   function render(){
+            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container')
+        
+            recaptchaVerifier.render();
+        }
+        
+        function phoneAuth(){
+            var number = "+91"+document.getElementById('mobile').value;
+			
+            firebase.auth().signInWithPhoneNumber(number,window.recaptchaVerifier).then(function(confirmationResult){
+                window.confirmationResult = confirmationResult;
+                coderesult = confirmationResult;
+				
+                document.getElementById('sender').style.display = 'none';
+                document.getElementById('verifier').style.display = 'block';
+            }).catch(function(error){
+                console.log(error.message);
+            });
+        }
+        
+        // Function for OTP verification
+        function codeverify(){
+            var code = document.getElementById('OtpField').value;
+			var number = document.getElementById('mobile').value;
+            coderesult.confirm(code).then(function(){
+                document.getElementById('verified').style.display = 'block';
+                document.getElementById('unVerified').style.display = 'none';
+				document.getElementById('verifier').style.display = 'none';
+				document.getElementById('signInBtn').style.display = 'block';
+
+				document.getElementById('mobileNum').value = number;
+				
+            }).catch(function(){
+                document.getElementById('verified').style.display = 'none';
+                document.getElementById('unVerified').style.display = 'block';
+				document.getElementById('signInBtn').style.display = 'none';
+            })
+        }
+
+
+    </script>
+    
+  </body>
+</html>

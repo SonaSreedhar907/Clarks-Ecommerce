@@ -1,0 +1,87 @@
+<div class="container-fluid mt-4">
+    <h1>Offer List</h1>
+    <hr>
+    <h3>Product Offers</h3>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Offer Code</th>
+            <th>Product Name</th>
+            <th>Offer Value</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(products.length > 0) { %>
+            <% products.forEach(function(product) { %>
+              <tr>
+                <td><%= product.offerCode %></td>
+                <td><%= product.productDetails.Productname %></td>
+                <td><%= product.offerValue %></td>
+                <td><%= product.startDate.toDateString() %></td>
+                <td><%= product.endDate.toDateString() %></td>
+                <td><% if(product.isActive) { %>
+                      <span class="badge bg-success">Active</span>
+                    <% } else { %>
+                      <span class="badge bg-danger">Inactive</span>
+                    <% } %>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="6">No product offers found</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  
+    <hr>
+  
+    <h3>Category Offers</h3>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Offer Code</th>
+            <th>Category Name</th>
+            <th>Offer Value</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(categories.length > 0) { %>
+            <% categories.forEach(function(categoryOffer) { %>
+              <tr>
+                <td><%= categoryOffer.offerCode %></td>
+                <td><%= categoryOffer.categoryDetails.name %></td>
+                <td><%= categoryOffer.offerValue %></td>
+                <td><%= moment(categoryOffer.startDate).format("MMMM Do YYYY") %></td>
+                <td><%= moment(categoryOffer.endDate).format("MMMM Do YYYY") %></td>
+                <td><% if(categoryOffer.isActive) { %>
+                      <span class="badge bg-success">Active</span>
+                    <% } else { %>
+                      <span class="badge bg-danger">Inactive</span>
+                    <% } %>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="6">No category offers found</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha384-5O1CqnT9nPfo0sCIEpiXnjM6zLPpCkGYn6m8gZa7aFxMz

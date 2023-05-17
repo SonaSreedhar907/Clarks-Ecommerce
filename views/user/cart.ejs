@@ -1,0 +1,234 @@
+<main class="main">
+  <section class="mt-50 mb-50">
+      <div class="container">
+          <div class="row">
+            
+              <div class="col-12">
+                  <div class="table-responsive"> 
+                  
+                    <% if(products.length==0){%>
+                      
+                       <div class="d-flex pb-2" style="justify-content: center; align-items: center;">
+                        <img src="\assets\imgs\banner\empty-cart1.png" alt="" style="width:430px; height:340px;">
+                        </div> 
+                        <a href="/shop" style="width: 10cm; margin-left: 13cm;
+                        margin-top: 2cm;" class="btn btn-outline-dark-2 btn-block mb-3"><i class="icon-refresh"></i>CONTINUE SHOPPING</a> 
+                      <%} else{%>              
+                      <table class="table shopping-summery text-center clean">
+                          <thead>
+                              <tr class="main-heading">
+                                  <th scope="col">Image</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Price</th>
+                                  <th scope="col">Quantity</th>
+                                  <th scope="col">Subtotal</th>
+                                  <th scope="col">Remove</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+
+                            
+                          
+                            <% products.forEach(function(product) { %>
+
+                              <tr>
+                                  <td class="image product-thumbnail"><img src="/uploads/products/<%=product.proDetails[0].Image[0]%>" alt="#"></td>
+                                  <td class="product-des product-name">
+                                      <h5 class="product-name"><a href="#"><%=product.proDetails[0].Productname%></a></h5>
+                                      <p class="font-xs"><%=product.proDetails[0].ProductDescription%>
+                                      </p>
+                                  </td>
+                                  <td class="price" data-title="Price"><span><%=product.proDetails[0].Price%></span></td>
+                                  <td class="text-center" data-title="Stock">
+                                      <div class="detail-qty border radius  m-auto">
+                                      
+                                          
+                                            <a  class="qty-up" onclick="cartQuantity('<%= product._id %>','<%= product.proDetails[0]._id%>','<%= product.proDetails[0].Price %>',1)">
+                                              <i class="fi-rs-angle-small-up"></i></a>
+                                          <p id="qty<%= product.proDetails[0]._id%>"><%= product.products.quantity %></p>
+                                          <a class="qty-down" onclick="cartQuantity('<%= product._id %>','<%= product.proDetails[0]._id%>','<%= product.proDetails[0].Price %>',-1)">
+                                            <i class="fi-rs-angle-small-down"></i></a> 
+                                          
+                                          
+                                      </div>
+                                          
+                                      </div>
+                                  </td>
+                                  
+                                  <td class="text-right" data-title="Cart">
+                                    <span>₹ <span id="<%= product.proDetails[0]._id%>-subtotal">
+                                      <%=product.subtotal%></span></span>
+                                  </td>
+                                  
+                                
+                                  <!-- <td class="action" data-title="Remove">
+                                    
+                                    <a href="/delete-cart-product/<%=product.proDetails[0]._id%>"
+                                      
+                                     class="text-muted"><i class="fi-rs-trash"></i></a></td> -->
+
+                                     <td class="action" cartItemss-title="Remove">
+                                      <button
+                                        class="text-muted"
+                                        onclick="removeItem('<%=product.proDetails[0]._id%>')"
+                                      >
+                                        <i class="fi-rs-trash"></i>
+                                      </button>
+                                    </td>
+     
+                              </tr>
+
+
+                             
+
+                              
+                          <% }) %>
+                          <hr>  
+                         
+                          
+                          </tbody>
+                      </table>
+                      <div style="float:right; margin-right:5px; margin-top:0px;">
+                          <strong style="font-weight: bold; color: black; font-size: 24px;">Total :₹ <span id="grandtotal">
+                            <%=locals.total%></span></strong> 
+                          <div style="text-align: right;">
+                      <div style="text-align: right;">
+                        <a href="/place-order" class="btn"> <i class="fi-rs-box-alt mr-10"></i> Proceed To CheckOut</a>
+                      </div>
+                      
+                  </div>
+                  <% } %>
+
+                                
+                                
+                                
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+</main>
+
+
+<script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+<script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+<script src="assets/js/plugins/slick.js"></script>
+<script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+<script src="assets/js/plugins/wow.js"></script>
+<script src="assets/js/plugins/jquery-ui.js"></script>
+<script src="assets/js/plugins/perfect-scrollbar.js"></script>
+<script src="assets/js/plugins/magnific-popup.js"></script>
+<script src="assets/js/plugins/select2.min.js"></script>
+<script src="assets/js/plugins/waypoints.js"></script>
+<script src="assets/js/plugins/counterup.js"></script>
+<script src="assets/js/plugins/jquery.countdown.min.js"></script>
+<script src="assets/js/plugins/images-loaded.js"></script>
+<script src="assets/js/plugins/isotope.js"></script>
+<script src="assets/js/plugins/scrollup.js"></script>
+<script src="assets/js/plugins/jquery.vticker-min.js"></script>
+<!-- Template  JS -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/shop.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+
+<script>
+function removeItem(prodId) {
+   
+    console.log(prodId);
+    swal({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      console.log(result,"ok");
+      if (result) {
+        $.ajax({
+          url: '/delete-cart-product/'+prodId,
+         
+          method: 'get',
+          success: (response) => {
+            if (response) {
+              location.reload();
+            }
+          },
+        });
+        swal(
+          'Deleted!',
+          'Product is deleted from the wishlist.',
+          'success'
+        );
+      }
+    });
+  }
+
+function cartQuantity(cartId, prodId, Price, count) {
+  let quantity = parseInt(document.getElementById('qty'+ prodId).innerText)
+
+  console.log(quantity, typeof(quantity),"pppppp");
+  console.log(count,"this is count....")
+
+  let totalQunat=quantity+count;
+
+
+  let price=parseInt(Price);
+
+  let subTot=price*totalQunat;
+
+  
+  $.ajax({
+    url: '/change-product-quantity',
+    method: 'post',
+    data: {
+      cart: cartId,
+      product: prodId,
+      count: count,
+      quantity: quantity,
+    }, 
+    success: (response) => {
+      
+
+      document.getElementById('grandtotal').innerHTML=response.grandTotal
+
+      
+      if (response.stock == 'Full') {
+        console.log('out of stock');
+
+      }else{
+
+        if (response.removeProduct) {
+          alert('product removed ')
+          location.reload()
+        } 
+        else {
+          document.getElementById('qty' + prodId).innerText = quantity + count
+          let totalCount=quantity + count
+
+          document.getElementById(prodId+'-subtotal').innerText=price*totalCount
+         
+          if (quantity + count < 2) {
+                      document.querySelector(`#${prodId} .btn-minus`).classList.add('d-none')
+          } else {
+                        document.querySelector(`#${prodId} .btn-minus`).classList.remove('d-none')
+                  }
+        }
+      }
+        
+      }
+  })
+}
+
+
+   
+   </script>

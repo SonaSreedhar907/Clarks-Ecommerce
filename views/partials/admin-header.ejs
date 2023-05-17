@@ -1,0 +1,68 @@
+<header class="main-header navbar">
+  
+  <div class="col-search">
+    <form class="searchform">
+      <div class="input-group">
+        <input
+          list="search_terms"
+          type="text"
+          class="form-control"
+          placeholder="Search term"
+        />
+        <button class="btn btn-light bg" type="button">
+          <i class="material-icons md-search"></i>
+        </button>
+      </div>
+      <datalist id="search_terms">
+        <option value="Products"></option>
+        <option value="View Products"></option>
+        <option value="Lion Casual"></option>
+       
+      </datalist>
+    </form>
+  </div>
+ 
+      <% if (adminStatus==true) { %>
+        
+        <li class="dropdown nav-item">
+          <a
+          class="dropdown-toggle"
+          data-bs-toggle="dropdown"
+          href="#"
+          id="dropdownAccount"
+          aria-expanded="false"
+        >
+          <img
+            class="img-xs rounded-circle"
+            src="/imgs/people/avatar3.jpg"
+            alt="User"
+        /></a>
+        <div
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="dropdownAccount"
+        >
+          <a class="dropdown-item" href="#"
+            ><i class="material-icons md-perm_identity"></i>Profile</a
+          >
+          <div class="dropdown-divider"></div>
+          <!-- <a class="dropdown-item text-danger" href="/admin/logout"
+            ><i class="material-icons md-exit_to_app"></i>Logout</a
+          >
+           -->
+           <a class="dropdown-item text-danger" href="#" onclick="logout()">
+            <i class="material-icons md-perm_identity"></i>Logout
+        </a>
+        </div>
+          
+          <%} else { %>
+           Account
+            
+          <% } %>
+       
+      </li>
+    </ul>
+  </div>
+  
+</header>
+
+

@@ -1,0 +1,211 @@
+<section class="mx-auto">
+  <main class="main">
+    <div class="page-header breadcrumb-wrap">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="/" rel="nofollow">Home</a>
+          <span></span> Pages <span></span> Signup / Register
+        </div>
+      </div>
+    </div>
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-lg-10 m-auto">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <div
+              class="login_wrap widget-taber-content p-30 background-white border-radius-5"
+            >
+              <div class="padding_eight_all bg-white">
+                <div class="heading_s1">
+                  <h3 class="mb-30">Create an Account</h3>
+                </div>
+                <p class="mb-50 font-sm">
+                  Your personal data will be used to support your experience
+                  throughout this website, to manage access to your account, and
+                  for other purposes described in our privacy policy
+                </p>
+                <%if (emailStatus==false){%>
+                  <p style="color: red;">EmailId already exist </p>
+                  <%}
+
+                   
+              
+                  %>
+                  
+                <form id="signUp" onsubmit="validateSignup(event)" action="/signup" method="post">
+                  <div class="form-group" >
+                  
+                    <input
+                    id="username"
+                      type="text"
+                      required=""
+                      name="username"
+                      placeholder="Username"
+                    />
+                    
+                      
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      required=""
+                      name="email"
+                      placeholder="Email"
+                    />
+                  </div>
+                      <p id="phone-error" style="color: red;"></p>
+                     
+                  <div class="form-group" >
+                    <input required pattern="[0-9]{10}" title="Please enter a 10 digit phone number"
+                    id="mobile"
+                      type="text"
+                      required=""
+                      name="phonenumber"
+                      placeholder="Phone Number"
+                    />
+                    <span id="phoneError" style="color:red;"></span>
+                  </div>
+                  <p id="pass-error" style="color: red;"></p>
+                  <div class="form-group">
+                    <input
+                    id="pass"
+                      required=""
+                      name="password"
+
+                      type="password"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <p id="passConfirm" style="color: red;"></p>
+                  <div class="form-group">
+                    <input
+                    id="passconfm"
+                      required=""
+                      type="password"
+                      placeholder="Confirm password"
+                    />
+                  </div>
+                  <div class="login_footer form-group">
+                    <div class="chek-form">
+                      <div class="custome-checkbox">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="checkbox"
+                          id="exampleCheckbox12"
+                          value=""
+                        />
+                        <label class="form-check-label" for="exampleCheckbox12"
+                          ><span>I agree to terms &amp; Policy.</span></label
+                        >
+                      </div>
+                    </div>
+                    
+                      
+                  </div>
+                  <div class="form-group d-flex justify-content-center">
+                    <button 
+                      type="submit"
+                      class="btn btn-fill-out btn-block hover-up"
+                       
+                      href=""
+                    >
+                     REGISTER
+                    </button>
+                  </div>
+                </form>
+                <div class="divider-text-center mt-15 mb-15">
+                  <span> or</span>
+                </div>
+                <ul class="btn-login list_none text-center mb-15">
+                  <li>
+                    <a
+                      href="#"
+                      class="btn btn-facebook hover-up mb-lg-0 mb-sm-4"
+                      >Login With Facebook</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" class="btn btn-google hover-up"
+                      >Login With Google</a
+                    >
+                  </li>
+                </ul>
+                <div class="text-muted text-center">
+                  Already have an account ? <a href="/login"> Sign in now</a >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+ function validateSignup(event) {
+  event.preventDefault();
+var password = document.getElementById("pass").value;
+var passError = document.getElementById("pass-error");
+var passConfm = document.getElementById("passconfm").value;
+
+var mobile=document.getElementById("mobile").value
+var phoneErr=document.getElementById("phone-error");
+
+var form = document.getElementById("signUp");
+
+passError.textContent = "";
+passConfm.textContent=''
+phoneErr.textContent =""
+
+console.log(mobile,"this is mobile....");
+// if(mobile.lenth>11 && mobile.length<10){
+//   phoneErr.textContent="enter valid 10 digit mobile number"
+// }
+
+if (!/^\d+$/.test(mobile)) {
+phoneErr.textContent = "Mobile number can only contain digits.";
+return false;
+}
+
+
+// Check if password is at least 8 characters long
+if (password.length < 8) {
+  passError.textContent = "Password must be at least 8 characters long.";
+  return false;
+}
+
+// Check if the first letter is uppercase
+if (!/^[A-Z]/.test(password)) {
+  passError.textContent = "Password must start with an uppercase letter.";
+  return false;
+}
+
+// Check if password contains at least 2 special characters
+var specialCharCount = 0;
+for (var i = 0; i < password.length; i++) {
+  if (/[^A-Za-z0-9]/.test(password.charAt(i))) {
+    specialCharCount++;
+  }
+}
+if (specialCharCount < 1) {
+  passError.textContent = "Password must contain at least 1 special characters.";
+  return false;
+}
+
+if(password!=passConfm){
+passConfirm.textContent="entered password does not match!"
+return false;
+}
+
+// // If all checks pass, return true to submit the form
+form.submit()
+return true;
+}
+
+
+
+</script>

@@ -1,0 +1,43 @@
+<section>
+    <div class="container">
+      <table class="table mt-5" id="ordersTable">
+        <thead>
+          <tr>
+            <th scope="col">Order</th>
+            <th scope="col">Date</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Status</th>
+            <th scope="col">Total</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% response.forEach(function(response) { %>
+          <tr>
+            <td><%= response._id %></td>
+            <td class="date-cell"><%= response.date %></td>
+            <td><%= response.paymentMethod %></td>
+            <td><%= response.status %></td>
+            <td>₹<%= response.total %></td>
+        
+            <td>
+              <a href="/view-order-products/<%= response._id %>" class="btn btn-primary">View</a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+        
+      </table>
+    </div>
+  </section>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script>
+    var dateCells = document.querySelectorAll('.date-cell');
+    dateCells.forEach(function(cell) {
+      var date = moment(cell.innerHTML).format('MMMM Do YYYY, h:mm:ss a');
+      cell.innerHTML = date;
+    });
+  </script>
+  

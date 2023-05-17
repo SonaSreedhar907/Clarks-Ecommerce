@@ -1,0 +1,368 @@
+<body>
+	<main class="main">
+	  <section class="mt-50 mb-50">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 ">
+					<div class="mb-5">
+						<!-- <div class="form-outline">
+							<input type="text" id="coupon-code" class="form-control form-control-lg"/>
+							<label class="form-label" for="coupon-code">Enter your code</label>
+						</div>
+						<button type="button" class="btn btn-secondary btn-lg" onclick="applyCoupon()">Apply coupon</button>
+						<input hidden id="raw-total" type="text" value="<%= total %>"></div>       -->
+		            </div>
+	  	            </div>
+
+		  <form action="" method="POST" id="checkout-form">
+  
+            <input type="text" name="userId" id="" value="<%= user._id %>" hidden>
+<% if (user) { %>
+<input required="" class="form-control square" name="Name" type="text" value="<%= user.username %>" hidden>
+<input required="" class="form-control square" name="phone" type="phone" value="<%= user.phoneNumber %>" hidden>
+ <input required="" class="form-control square" name="Email" type="email" value="<%= user.email %>" hidden> 
+<% } %>
+			
+			<div class="row">
+			  <div class="col-md-6">
+				<div class="mb-25">
+				  <h4>Checkout</h4>
+				</div>
+				
+				<div class="payment_method">
+				  <div class="mb-25">
+					<h5>Select a delivery address</h5>
+				  </div>
+				  <div class="payment_option">
+  
+  
+					<div class="container">
+						<div class="row">
+			   <% address.forEach(function(address){ %>
+			   <div class="col-lg-6 mt-10">
+				 <div class="payment_method">
+				   <div class="payment_option">
+					 <div class="custome-radio">
+					   <input class="form-check-input" required="" type="radio" name="address"
+						 value="<%= address._id %>" id="<%= address._id %>" checked="">
+					   <label class="form-check-label" for="<%= address._id %>" data-bs-toggle="collapse"
+						 data-target="#checkPayment" aria-controls="checkPayment">
+						 <div class="card">
+						   <div class="card-header">
+							 <h5 class="mb-0"></h5>
+						   </div>
+						   <div class="card-body">
+							 <address>
+							  Name: <%= address.name %><br>
+							  Phone Number: <%= address.phone %><br>
+							  Address 1: <%= address.billing_address %><br>
+							  Address 2: <%= address.billing_address2 %><br>
+							  City: <%= address.city %><br>
+							  State:  <%= address.state %><br>
+							
+							pincode: <%= address.zipcode %>
+						</address>
+							 <!-- <a href="/editAddress/<%= address._id %>" class="btn-small">Edit</a>
+							 <a href="/deleteAddress/<%= address._id %>" style="margin-left:100px;" class="btn-small"
+							   onclick="return confirm('Do you want to delete Shipping Address? Are you sure?')">Delete</a> -->
+		   
+						   </div>
+						 </div>
+					   </label>
+					 </div>
+				   </div>
+				 </div>
+			   </div>
+			   <% }); %>
+			 </div>
+		   </div>
+							 </div>
+							 <div class="row">
+							   <div class="ship_detail">
+								 <div class="form-group">
+								   <div class="chek-form">
+									 <div class="custome-checkbox">
+									   <input class="form-check-input" type="checkbox" name="checkbox" id="differentaddress">
+									 </div>
+								   </div>
+								 </div>
+								 <div id="collapseAddress" class="different_address collapse in">
+								 </div>
+							   </div>
+							 </div>
+						   </div>
+						 </div>
+						 <div class="col-md-6">
+						   <div class="order_review">
+							 <div class="mb-20">
+							   <h4>Your Orders</h4>
+							  
+							 </div>
+							 <div class="table-responsive order_table text-center">
+							   <table class="table">
+								 <thead>
+								   <tr>
+									 <th colspan="2">Product</th>
+									 <th>Sub Total</th>
+								   </tr>
+								 </thead>
+								 <tbody>
+								   <% products.forEach(function(item) { %>
+								   <tr>
+									 <td class="image product-thumbnail"><img src="/uploads/products/<%= item.proDetails[0].Image[0] %>"  alt="#">
+									 </td>
+									 <td>
+									   <h5><a href="#"><%= item.proDetails[0].Productname %></a></h5> <span
+										 class="product-qty">x
+										 <span id="#"><%= item.products.quantity %></span></span>
+									 </td>
+			 
+			 
+									 <td>₹<%= item.subtotal %></td>
+									 <% }); %>
+								   </tr>
+								   <tr>
+									<th>Total</th>
+									<td colspan="2"  id="raw-total" class="product-subtotal" name="total"> ₹<span><%= total %></span>
+                                      </td>
+									</tr>
+ 
+									 <th>Shipping</th>
+									 <td colspan="2"><em>Free Shipping</em></td>
+								   </tr>
+
+								   <tr>
+									<th>Coupon Discount</th>
+									<td class="product-subtotal" id="couponDiscount" colspan="2"> <span > </span>
+                               
+									</td>
+									
+								  </tr> 
+								  <tr>
+									<th>Total</th>
+									<td class="product-subtotal" colspan="2"> ₹<span id="total"><%= total %></span></td>
+									</td>
+								   <tr>
+								 
+								 
+								   </tr>
+								 </tbody>
+							   </table>
+							 </div>
+							 
+ 
+
+
+							 <div class="row p-2 m-3" style="border:1px solid
+							 rgb(227, 224,
+							 224);border-radius:.5rem;background-color:rgb(246,
+							 246, 246);">
+							 <div class="col-lg-6">
+								 <div class="toggle_info">
+									 <span><i class="fi-rs-label mr-10"></i><span
+											 class="text-muted">Have a coupon?</span> <a
+											 href="#coupon" data-bs-toggle="collapse"
+											 class="collapsed" aria-expanded="false">Click here</a></span>
+								 </div>
+								 <div class="panel-collapse collapse coupon_form "
+									 id="coupon">
+									 <div class="">
+										 <p class="mb-30 font-sm">If you have a coupon code,
+											 please apply it below.</p>
+
+										 <!-- <div class="d-flex"> -->
+										 <input class="form-control" id="couponCode"
+											 type="text" oninput="this.value=
+											 this.value.toUpperCase()"
+											 style="text-transform:uppercase;width:fit-content;border:1px solid blue;background-color: aliceblue;"
+											 maxlength="15">
+										 <!-- <div class="btn btn-secondary" onclick="removeCoupon()" style="margin-left:.3rem;border-radius:50%;cursor:pointer;">X</div> -->
+										 <!-- </div> -->
+										 <p class="text-success m-1" id="validCoupon"></p>
+										 <p class="text-danger m-1" id="invalidCoupon"></p>
+										 <div>
+											 <!-- <button type="button" class="btn btn-primary mt-2" style="cursor:pointer" href='/apply-coupon'>Apply Coupon</button> -->
+
+											 <div class="btn btn-primary mt-2"
+												 style="cursor:pointer" onclick="addCoupon()">Apply
+												 Coupon</div> 
+										 </div>
+
+									 </div>
+								 </div>
+							 </div>
+						 </div>
+
+
+							 <h2 id="tot"></h2>
+							 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+							 <div class="payment_method" name="paymentmethod">
+							   <div class="mb-25">
+								 <h5>Payment</h5>
+							   </div>
+							   <div class="payment_option">
+								 <div class="custome-radio">
+								   <input class="form-check-input" required="" type="radio" name="paymentMethod" value="COD"
+									 id="exampleRadios3" checked="">
+								   <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse"
+									 data-target="#bankTranfer" aria-controls="bankTranfer">Cash On Delivery</label>
+								   <div class="form-group collapse in" id="bankTranfer">
+									 <p class="text-muted mt-5">There are many variations of passages of Lorem Ipsum available, but
+									   the
+									   majority have suffered alteration. </p>
+								   </div>
+								 </div>
+								 <div class="custome-radio">
+								   <input class="form-check-input" required="" type="radio" name="paymentMethod" value="ONLINE"
+									 id="exampleRadios4" checked="">
+								   <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse"
+									 data-target="#checkPayment" aria-controls="checkPayment">Online Payment</label>
+								   <div class="form-group collapse in" id="checkPayment">
+									 <p class="text-muted mt-5">Please send your cheque to Store Name, Store Street, Store Town,
+									   Store
+									   State / County, Store Postcode. </p>
+								   </div>
+								 </div>
+			 
+							   </div>
+							 </div>
+							 <button type="submit" class="btn btn-fill-out btn-block mt-30">Place your order</button>
+						   </div>
+						 </div>
+					   </div>
+			 
+					   
+					 </form>
+				   </div>
+				 </section>
+				
+			   </main>
+			 </body>
+
+
+
+
+
+
+
+			 <script>
+				function addCoupon() {
+			   const couponCode = document.getElementById("couponCode").value;
+			   const total = document.getElementById("total").innerText;
+			   console.log(couponCode,'pppoiuuyyy')
+			   console.log(total,'kjhggggg')
+			   $.ajax({
+			   url: "/apply-coupon/" ,
+				method: "POST",
+				data: {
+				code:couponCode,
+				total:total
+			  },
+				success: function (response) {
+				// Handle successful response
+				  if (response.success) {
+					document.getElementById('validCoupon').innerText = 'Coupon applied successfully';
+					document.getElementById('invalidCoupon').innerText = '';
+					// document.getElementById('couponDiscount').innerText = response.discount;
+					document.getElementById("couponDiscount").innerText = "₹" + response.discount;
+					document.getElementById('total').innerText = response.newTotal;
+				  } else {
+					document.getElementById('invalidCoupon').innerText = response.message;
+					document.getElementById('validCoupon').innerText = '';
+					document.getElementById('couponDiscount').innerText = '0';
+					document.getElementById('total').innerText = total;
+				  }
+			  },
+			  error: function (error) {
+				// Handle error
+				console.log(error);
+				  document.getElementById('invalidCoupon').innerText = 'Error applying coupon';
+				  document.getElementById('validCoupon').innerText = '';
+				  document.getElementById('couponDiscount').innerText = '0';
+				  document.getElementById('total').innerText = total;
+			
+			  },
+			});
+			
+			
+			}
+			
+			
+						   $("#checkout-form").submit((e)=>{
+							   e.preventDefault();
+							   $.ajax({
+								   url:'/place-order',
+								   method:'post',
+								   data:$('#checkout-form').serialize(),
+								   success:(response)=>{
+									  alert('success')
+									  if(response.codSuccess){
+										console.log('success')
+										location.href='order-success'
+									  }else{
+										razorpayPayment(response)
+									  }
+									  
+								  }
+							  })
+						  })
+						 function razorpayPayment(order){
+							var options = {
+								"key": "rzp_test_djEP5tFIiP8WlG", // Enter the Key ID generated from the Dashboard
+								"amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+								"currency": "INR",
+								"name": "Evara", //your business name
+								"description": "Test Transaction",
+								"image": "/assets/imgs/theme/logo.svg",
+								"order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+								"handler": function (response) {
+						  
+						  
+								  verifyPayment(response, order)
+								},
+								"prefill": {
+								  "name": "Gaurav Kumar", //your customer's name
+								  "email": "gaurav.kumar@example.com",
+								  "contact": "9000090000"
+								},
+								"notes": {
+								  "address": "Razorpay Corporate Office"
+								},
+								"theme": {
+								  "color": "#3399cc"
+								}
+							  };
+							  var rzp1 = new Razorpay(options);
+							  rzp1.open();
+						  
+						 }
+						 function verifyPayment(payment, order) {
+							$.ajax({
+							  url: '/verify-payment',
+							  data: {
+								payment,
+								order
+							  },
+							  method: 'post',
+							  success: (response) => {
+								console.log(response)
+								if (response.status) {
+								  swal({
+									title: 'Success!',
+									text: 'Your payment has been verified.',
+									icon: "success",
+									}).then(() => {
+									location.href = '/order-success';
+								  });
+								} else {
+								  Swal.fire({
+									title: 'Error!',
+									text: 'Your payment failed.',
+									icon: 'error',
+									confirmButtonText: 'OK'
+								  });
+								}
+							  }
+							});
+						  }
+			   </script>

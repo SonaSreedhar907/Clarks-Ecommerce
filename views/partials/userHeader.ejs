@@ -1,0 +1,273 @@
+<header class="header-area header-style-3 header-height-2">
+    <div class="header-top header-top-ptb-1 d-none d-lg-block">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-3 col-lg-4">
+            <div class="header-info">
+              <ul>
+                <li>
+                  <i class="fi-rs-smartphone"></i>
+                  <a href="#">(+01) - 2345 - 6789</a>
+                </li>
+                <li>
+                  <i class="fi-rs-marker"></i
+                  ><a href="page-contact.html">Our location</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-4">
+            <div class="text-center">
+              <div id="news-flash" class="d-inline-block">
+                <ul>
+                  <li>
+                    Get great devices up to 50% off
+                    <a href="shop-grid-right.html">View details</a>
+                  </li>
+                  <li>Supper Value Deals - Save more with coupons</li>
+                  <li>
+                    Trendy 25silver jewelry, save up 35% off today
+                    <a href="shop-grid-right.html">Shop now</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4">
+            <div class="header-info header-info-right">
+              <ul>
+                <li>
+                  <a class="language-dropdown-active" href="#">
+                    <i class="fi-rs-world"></i> English
+                    <i class="fi-rs-angle-small-down"></i
+                  ></a>
+                  <ul class="language-dropdown">
+                    <li>
+                      <a href="#"
+                        ><img
+                          alt=""
+                        />हिंदी</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><img
+                          alt=""
+                        />മലയാളം</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><img
+                          alt=""
+                        />Pусский</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+
+
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <% if(locals.loginheader){%>
+                      <%=userName%>
+                      <%} else{%>
+                        Account
+                        <%}
+                        %>
+                    <!-- Dropdown -->
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                    <% if(locals.loginheader){%>
+                      <a class="dropdown-item" href="/profile" style="color: black;" >MY ACCOUNT</a>
+                    <hr>
+                    <a class="dropdown-item" href="/orders" style="color: black;">ORDERS</a>
+                    <hr>
+                      <%}else{%>
+                        <a href="/login" class="dropdown-item" style="color: black;">CONTACT US</a>
+                        <hr>
+                        <a href="/signup" class="dropdown-item" style="color: black;">SIGNUP</a>
+                        <hr>
+                        <%}
+                    %>
+                    
+                  <% if(locals.loginheader){%>
+                    <a href="/logout" class="dropdown-item " style="color: black;">LOGOUT</a>
+                    <%}else{%>
+                      <a href="/login" class="dropdown-item" style="color: black;">LOGIN</a>
+                      <%}
+                  %>
+                    
+                  </div>
+                </div>
+              
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-middle header-middle-ptb-1 d-none d-lg-block sticky-bar">
+      <div class="container">
+        <div class="header-wrap" style="height: 0rem">
+          <div class="logo logo-width-1">
+            <a href="#"
+              ><img style="padding-top: 1cm;" src="/assets/imgs/theme/logo.png" alt="logo"
+            /></a>
+          </div>
+
+          <!-- Header with Home Shop Orders -->
+
+          <div
+              class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
+              <nav>
+                <ul>
+                  <li>
+                  
+                    <a style="padding-top: 1cm; font-size:20px;" class="" href="/">Home <i class=""></i></a>
+                  </li>
+                  <li>
+                    <a href="/shop" style="font-size:20px">Shop <i class=""></i></a>
+                  </li>
+                 
+                  
+                 
+                </ul>
+              </nav>
+            </div>
+
+            
+           
+
+            </div> 
+            
+            <div class="header-action-right">
+              <div class="header-action-2">
+                <!-- if -->
+                <div>
+
+                
+            <div class="flex-w flex-c-m m-tb-10">
+                <div class="filter-container">
+                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter"
+                        id="filter-button">
+                        <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+                        <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                       
+                    </div>
+                    <div class="filter-options" id="filter-options">
+                    </div>
+                </div>
+                <% if(locals.shop){%>
+                  <form action="/search" method="GET" class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" name="search" class="form-control"
+                            value="" id="search" placeholder="Product Name.." />
+                        <datalist id="search_terms">
+                          <!-- for each loop -->
+                          
+                            <option value="">name of the products</option>
+                            <!-- loop close -->
+                        </datalist>
+                        <button class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search" type="submit">
+                            <i class="icon-search">Search</i>
+                        </button>
+                    </div>
+                </form>
+                  <%} %>
+                
+            </div>
+                </div>
+                
+                <div class="header-action-icon-2">
+                  <a href="/view-wishlist">
+                    <img
+                      alt=""
+                      src="/assets/imgs/theme/icons/icon-heart.svg"
+                    />
+                    <% if(locals.wishcount){%>
+                      <span class="pro-count blue"><%= locals.wishcount%></span>
+                      <%}
+                      %> 
+                  </a>
+                </div>
+               
+                <div class="header-action-icon-2">
+                  <a class="mini-cart-icon" href="/cart">
+                    <img
+                      alt=""
+                      src="/assets/imgs/theme/icons/icon-cart.svg"
+                    />
+                    <% if(locals.cartCount){%>
+                    <span class="pro-count blue"><%=locals.cartCount%></span>
+                    <%}
+                    %> 
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <div class="header-bottom header-bottom-bg-color">
+      <div class="container">
+        <div class="header-wrap header-space-between position-relative main-nav">
+          <div class="logo logo-width-1 d-block d-lg-none">
+            <a href="index.html"
+              ><img src="/assets/imgs/theme/timex.png" alt="logo"
+            /></a>
+          </div>
+          
+          </div>
+         
+          <p class="mobile-promotion">
+            Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%
+          </p>
+          <div class="header-action-right d-block d-lg-none">
+            <div class="header-action-2">
+              <div class="header-action-icon-2">
+                <a href="/view-wishlist">
+                  <img
+                    class="svgInject"
+                    alt=""
+                    src="assets/imgs/theme/icons/icon-heart.svg"
+                  />
+                  <% if(locals.wishcount){%>
+                    <span class="pro-count blue"><%= locals.wishcount%></span>
+                    <%}
+                    %> 
+                </a>
+              </div>
+              <!-- meeeeee -->
+              <div class="header-action-icon-2">
+                <div class="header-action-icon-2">
+                  <a class="mini-cart-icon" href="/cart">
+                    <img
+                      alt="Evara"
+                      src="assets/imgs/theme/icons/icon-cart.svg"
+                    />
+                    <% if(locals.cartCount){%>
+                    <span class="pro-count blue"><%=locals.cartCount%></span>
+                    <%}
+                    %> 
+                  </a>
+                  
+                </div>
+                
+              </div>
+              <div class="header-action-icon-2 d-block d-lg-none">
+                <div class="burger-icon burger-icon-white">
+                  <span class="burger-icon-top"></span>
+                  <span class="burger-icon-mid"></span>
+                  <span class="burger-icon-bottom"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>

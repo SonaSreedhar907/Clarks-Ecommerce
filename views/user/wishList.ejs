@@ -1,0 +1,102 @@
+<main class="main">
+    <section class="mt-50 mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table shopping-summery text-center">
+                            <thead>
+                                <tr class="main-heading">
+                                    <th scope="col" colspan="2">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% products.forEach(function(product) { %>
+                                <tr>
+                                    <td class="image product-thumbnail"><img style="width: 70px; height:70px;"
+                                            src="/uploads/products/<%= product.proDetails[0].Image[0] %>" alt=""></td>
+                                    <td class="product-des product-name text-center"> <!-- Add "text-center" class -->
+                                        <h5 class="product-name"><a
+                                                href="/productDetails/"><%= product.proDetails[0].Productname %></a>
+                                        </h5>
+                                        <p class="font-xs"><%= product.proDetails[0].ProductDescription %></p>
+                                    </td>
+                                    <td class="price text-center" data-title="Price">₹<span
+                                            id="price"><%= product.proDetails[0].Price %></span></td>
+                                    <td class="action text-center" data-title="Action"> <!-- Add "text-center" class -->
+                                        <button type="submit" onclick="addToCart(`<%= product.proDetails[0]._id %>`)"
+                                            class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>Add to
+                                            cart</button>
+                                    </td>
+                                    <td class="action text-center" data-title="Remove"> <!-- Add "text-center" class -->
+                                        <a href="/delete-wishlist-product/<%=product.proDetails[0]._id%>"
+                                            onclick="return confirm('Are you sure you want to delete <%=product.proDetails[0].Productname%>?')"
+                                            class="text-muted"><i class="fi-rs-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <script>
+          function removeWishListProduct(proId) {
+            console.log('hai hello sona',proId)
+            $.ajax({
+                url: '/delete-wishlist-product',
+                data: {
+                
+                    proId: proId
+                },
+                method: 'get',
+                success: (response) => {
+                    if (response.removeProduct) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Removed from wishlist',
+                        }).then(() => {
+                            location.reload();
+                        });
+                    }
+                }
+            });
+        }
+    
+      function addToCart(prodId) {
+    console.log(prodId,"productid for ajax");
+    $.ajax(
+        {
+            url: `/add-to-cart/${prodId}`,
+            method: "get",
+            success: (response) => {
+                console.log("soooooooooonaaa");
+                if (response.status) {
+                    let count = $("#cart-count").html();
+                    count = parseInt(count) + 1;
+                    $("#cart-count").html(count);
+                    document.getElementById("success").classList.remove("d-none");
+                    setTimeout(function () {
+                        document.getElementById("success").classList.add("d-none");
+                    }, 1000);
+                    
+                } else {
+                    location.href = "/login";
+                }
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+}
+
+    
+
+    </script>
