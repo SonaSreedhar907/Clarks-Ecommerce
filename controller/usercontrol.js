@@ -11,11 +11,11 @@ var loginheader, loginStatus;
 module.exports={
 
     getHome: async(req,res)=>{   
-        if(loginStatus){
+        if(loginStatus){  
           let userId = req.session.user._id;  
            let username = req.session.user.username    
             const cartCount = await userhelpers.getCartCount(userId);
-            wishcount = await userhelpers.getWishCount(req.session.user._id);
+            wishcount = await userhelpers.getWishCount(userId);
             if(cartCount){
                 res.render('user/userhome',{loginheader:true, cartCount,userName:username,wishcount})
             } else {
@@ -186,7 +186,9 @@ module.exports={
             userhelpers.displayProducts(userId).then(async(products)=>{
               wishcount = await userhelpers.getWishCount(req.session.user._id);
                 let cartCount=await userhelpers.getCartCount(userId)
+                console.log(cartCount,'gddmnggg')
                 total=await userhelpers.getTotalAmount(userId)
+                console.log(total,'gdmng')
                 if(cartCount ){
                      res.render('user/cart',{productExist: true, products,cartCount,loginheader:true,total,userName:username,wishcount})
                 } else {
@@ -197,9 +199,15 @@ module.exports={
         },
 
 
-        deleteCartProduct:(req,res)=>{
-          userhelpers.removeItem(req.params.id,req.session.user._id).then((resposne)=>{
-            res.redirect("/cart")
+        deleteCartProduct:async(req,res)=>{
+          let userId;
+            if(req.session.user){
+             userId = req.session.user._id
+            }
+            const cartCount = await userhelpers.getCartCount(userId);
+            wishcount = await userhelpers.getWishCount(req.session.user._id);    
+          userhelpers.removeItem(req.params.id,userId).then((resposne)=>{
+            res.redirect("/cart",cartCount,wishcount)
           })
           .catch((err)=>{
             res.redirect("/cart")
@@ -312,8 +320,16 @@ module.exports={
            },
 
            getEditAddress:async(req,res)=>{
+            let userId=''
+            if(req.session.user){
+               userId = req.session.user._id
+            }
+            let username = req.session.user.username    
+            const cartCount = await userhelpers.getCartCount(userId);
+            wishcount = await userhelpers.getWishCount(req.session.user._id);
+
              let address=await userhelpers.getAddressDetails(req.params.id)
-            res.render('user/editAddress',{loginheader:true,address})
+            res.render('user/editAddress',{loginheader:true,address,userName:username,cartCount,wishcount})
            },
 
            postEditAddress:async(req,res)=>{

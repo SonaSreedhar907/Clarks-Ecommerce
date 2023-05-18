@@ -293,7 +293,7 @@ module.exports={
                 [
                     {
                         '$match': {
-                            'status': "Delivered"
+                            'status': "placed"
                           }
                     },
                     {
@@ -347,7 +347,7 @@ module.exports={
                 [
                     {
                         '$match': {
-                            'status': "Delivered"
+                            'status': "placed"
                           }
                     },
                     {
@@ -457,6 +457,7 @@ module.exports={
           }
         ]
        )
+       console.log(count,'pppp09')
        resolve(count)
      })
   },

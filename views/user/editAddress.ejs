@@ -119,7 +119,7 @@
                   </div>
                   <div class="tab-pane fade active show" id="address" role="tabpanel" aria-labelledby="address-tab">
                     <div class="row">
-                      {{#each addresses}}
+                   
                       <div class="col-lg-6">
                         <div class="card">
                           <div class="card-header">
@@ -127,21 +127,21 @@
                           </div>
                           <div class="card-body">
                             <address>
-                              {{this.name}}<br>
-                              {{this.phone}}<br>
-                              {{this.billing_address}}<br>
-                              {{this.billing_address2}}
-                              <br>{{this.city}}<br>{{this.state}}
+                              <%= address.name %><br>
+                              <%= address.phone %><br>
+                              <%= address.billing_address %><br>
+                              <%= address.billing_address2 %>
+                              <br><%= address.city %><br><%= address.state %>
                             </address>
-                            <p>{{this.pincode}}</p>
-                            <a href="/editAddress/{{this._id}}" class="btn btn-primary">Edit</a>
-                            <a href="/deleteAddress/{{this._id}}" class="btn btn-danger"
+                            <p><%= address.zipcode %></p>
+                            <a href="/editAddress/<%= address._id %>" class="btn btn-primary">Edit</a>
+                            <a href="/deleteAddress/<%= address._id %>" class="btn btn-danger"
                               onclick=" return confirm('Do you want to delete Shipping Address?Are you sure?')">Delete</a>
   
                           </div>
                         </div>
                       </div>
-                      {{/each}}
+                    
                       <div class="ship_detail">
                         <div class="form-group">
                           <div class="chek-form">

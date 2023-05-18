@@ -1,5 +1,16 @@
 <section>
     <div class="container">
+      <%if(response.length<1){%>
+        <div class="d-flex pb-2" style="justify-content: center; align-items: center;">
+            <img src="\assets\imgs\banner\searchSvg.png" alt="" style="width:328px; margin-right:-111px; margin-top:74px;">
+            </div> 
+            <!-- <div class="w-full"><a style="width: 10cm; margin-left: 13.5cm;
+                margin-top: 2cm; padding-bottom: 1cm; border-color: green;" href="/cart" class="sc-iklJeh hbusih">GO TO CART</a></div> -->
+            <a href="/shop" style="width: 10cm; margin-left: 12.5cm; 
+            margin-top: 1cm;" class="btn btn-outline-dark-2 btn-block mb-3"><i class="icon-refresh"></i>GO TO CART</a> 
+
+        <%}
+        else{%>
       <table class="table mt-5" id="ordersTable">
         <thead>
           <tr>
@@ -28,6 +39,8 @@
         </tbody>
         
       </table>
+      <%}
+      %>
     </div>
   </section>
 

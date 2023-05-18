@@ -1336,43 +1336,7 @@ ListWishList: (userId) => {
           },
         },
 
-        //this is my aggregation
-        // {
-        //   '$match': {
-        //     'user': new ObjectId('userId')
-        //   }
-        // }, {
-        //   '$unwind': {
-        // 'path': '$wishitems',
-        // 'includeArrayIndex': 'string'
-
-        // }, {
-        //   '$project': {
-        //     'item': '$wishitems.productId'
-        //   }
-        // }, {
-        //   '$lookup': {
-        //     'from': 'products',
-        //     'localField': 'item',
-        //     'foreignField': '_id',
-        //     'as': 'wishlist'
-        //   }
-        // }, {
-        //   '$unwind':
-        //      '$wishlist'
-
-        // }, {
-        //   '$project': {
-        //     'item': 1,
-        //     'wishlist': [
-        //       {
-        //         'Productname': '$wishlist.Productname',
-        //         'Price': '$wishlist.Price',
-        //         'Image': '$wishlist.Image'
-        //       }
-        //     ]
-        //   }
-        // }
+    
       ])
       .then((wishlist) => {
         console.log(wishlist);
