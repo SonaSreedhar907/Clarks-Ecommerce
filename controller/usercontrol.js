@@ -1,5 +1,5 @@
 const { resolveInclude } = require("ejs");
-const adminhelpers = require("../helpers/adminhelpers");
+const adminhelpers = require("../helpers/adminHelper");
 const userhelpers = require("../helpers/userhelpers");
 const { category } = require("../model/connection");
 

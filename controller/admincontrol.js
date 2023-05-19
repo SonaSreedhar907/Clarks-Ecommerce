@@ -1,4 +1,4 @@
-const adminHelper = require('../helpers/adminHelpers');
+const adminHelper = require('../helpers/adminHelper');
 const userhelpers = require('../helpers/userhelpers');
 const db =require('../model/connection')
 const multer = require('multer')
