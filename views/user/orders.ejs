@@ -1,56 +1,66 @@
 <section>
-    <div class="container">
-      <%if(response.length<1){%>
-        <div class="d-flex pb-2" style="justify-content: center; align-items: center;">
-            <img src="\assets\imgs\banner\searchSvg.png" alt="" style="width:328px; margin-right:-111px; margin-top:74px;">
-            </div> 
-            <!-- <div class="w-full"><a style="width: 10cm; margin-left: 13.5cm;
-                margin-top: 2cm; padding-bottom: 1cm; border-color: green;" href="/cart" class="sc-iklJeh hbusih">GO TO CART</a></div> -->
-            <a href="/shop" style="width: 10cm; margin-left: 12.5cm; 
-            margin-top: 1cm;" class="btn btn-outline-dark-2 btn-block mb-3"><i class="icon-refresh"></i>GO TO CART</a> 
-
-        <%}
-        else{%>
-      <table class="table mt-5" id="ordersTable">
-        <thead>
-          <tr>
-            <th scope="col">Order</th>
-            <th scope="col">Date</th>
-            <th scope="col">Payment</th>
-            <th scope="col">Status</th>
-            <th scope="col">Total</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% response.forEach(function(response) { %>
-          <tr>
-            <td><%= response._id %></td>
-            <td class="date-cell"><%= response.date %></td>
-            <td><%= response.paymentMethod %></td>
-            <td><%= response.status %></td>
-            <td>₹<%= response.total %></td>
-        
-            <td>
-              <a href="/view-order-products/<%= response._id %>" class="btn btn-primary">View</a>
-            </td>
-          </tr>
-          <% }) %>
-        </tbody>
-        
-      </table>
-      <%}
-      %>
+  <div class="container">
+    <%if(response.length<1){%>
+    <div
+      class="d-flex pb-2"
+      style="justify-content: center; align-items: center"
+    >
+      <img
+        src="\assets\imgs\banner\searchSvg.png"
+        alt=""
+        style="width: 328px; margin-right: -111px; margin-top: 74px"
+      />
     </div>
-  </section>
+    <!-- <div class="w-full"><a style="width: 10cm; margin-left: 13.5cm;
+                margin-top: 2cm; padding-bottom: 1cm; border-color: green;" href="/cart" class="sc-iklJeh hbusih">GO TO CART</a></div> -->
+    <a
+      href="/shop"
+      style="width: 10cm; margin-left: 12.5cm; margin-top: 1cm"
+      class="btn btn-outline-dark-2 btn-block mb-3"
+      ><i class="icon-refresh"></i>GO TO CART</a
+    >
 
+    <%} else{%>
+    <table class="table mt-5" id="ordersTable">
+      <thead>
+        <tr>
+          <th scope="col">Order</th>
+          <th scope="col">Date</th>
+          <th scope="col">Payment</th>
+          <th scope="col">Status</th>
+          <th scope="col">Total</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% response.forEach(function(response) { %>
+        <tr>
+          <td><%= response._id %></td>
+          <td class="date-cell"><%= response.date %></td>
+          <td><%= response.paymentMethod %></td>
+          <td><%= response.status %></td>
+          <td>₹<%= response.total %></td>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script>
-    var dateCells = document.querySelectorAll('.date-cell');
-    dateCells.forEach(function(cell) {
-      var date = moment(cell.innerHTML).format('MMMM Do YYYY, h:mm:ss a');
-      cell.innerHTML = date;
-    });
-  </script>
-  
+          <td>
+            <a
+              href="/view-order-products/<%= response._id %>"
+              class="btn btn-primary"
+              >View</a
+            >
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <%} %>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+  var dateCells = document.querySelectorAll(".date-cell");
+  dateCells.forEach(function (cell) {
+    var date = moment(cell.innerHTML).format("MMMM Do YYYY, h:mm:ss a");
+    cell.innerHTML = date;
+  });
+</script>

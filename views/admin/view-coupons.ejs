@@ -1,49 +1,56 @@
 <section class="">
-    <div class="container d-flex justify-content-center">
-      <div class="row w-75 mt-5">
-        <div class="col-md-12">
-          <h2 class="text-center">Coupon List</h2>
-          <form  method="POST">
-            
-          </form>
-        </div>
+  <div class="container d-flex justify-content-center">
+    <div class="row w-75 mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center">Coupon List</h2>
+        <form method="POST"></form>
       </div>
     </div>
-  </section>
-  <!-- Table section -->
-  <section  mx-auto>
-    <div class="card-body">
-      <div class="row mt-5 mx-auto">
+  </div>
+</section>
+<!-- Table section -->
+<section mx-auto>
+  <div class="card-body">
+    <div class="row mt-5 mx-auto">
+      <div class="table-responsive">
         <div class="table-responsive">
-          <div class="table-responsive">
-            <table class="table align-middle table-nowrap mb-0" id="productTable">
-              <thead class="table-light">
-                <tr>
-                  <th class="align-middle" scope="col">_id</th>
-                  <th class="align-middle" scope="col">Coupon</th>
-                  <th class="align-middle" scope="col">Description</th>
-                  <th class="align-middle" scope="col">Min Amount</th>    
-                  <th class="align-middle" scope="col">Max Amount</th>
-                  <th class="align-middle" scope="col">Start Date</th>
-                  <th class="align-middle" scope="col">End Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% response.forEach(function(response,index) { %>
-                <tr>
-                    <td><%=response._id%></td>
-                    <td><%=response.code%></td>
-                    <td><%=response.description%></td>
-                    <td><%=response.minimumAmount%></td>
-                    <td><%=response.maximumDiscount%></td>
-                    <td><%=response.startDate%></td>
-                    <td><%=response.endDate%></td>
-                    <td>
-                    <a href ="/admin/edit-coupon/<%=response._id%>"  class="btn btn-success">Edit</a>
-                   
-                    <a href="/admin/delete-coupon/<%=response._id%>" class="btn btn-danger" onclick="event.preventDefault(); deleteCoupon('<%= response.couponName %>', '<%= response._id %>')">Delete</a>
-                    
-                    <!-- <td>
+          <table class="table align-middle table-nowrap mb-0" id="productTable">
+            <thead class="table-light">
+              <tr>
+                <th class="align-middle" scope="col">_id</th>
+                <th class="align-middle" scope="col">Coupon</th>
+                <th class="align-middle" scope="col">Description</th>
+                <th class="align-middle" scope="col">Min Amount</th>
+                <th class="align-middle" scope="col">Max Amount</th>
+                <th class="align-middle" scope="col">Start Date</th>
+                <th class="align-middle" scope="col">End Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% response.forEach(function(response,index) { %>
+              <tr>
+                <td><%=response._id%></td>
+                <td><%=response.code%></td>
+                <td><%=response.description%></td>
+                <td><%=response.minimumAmount%></td>
+                <td><%=response.maximumDiscount%></td>
+                <td><%=response.startDate%></td>
+                <td><%=response.endDate%></td>
+                <td>
+                  <a
+                    href="/admin/edit-coupon/<%=response._id%>"
+                    class="btn btn-success"
+                    >Edit</a
+                  >
+
+                  <a
+                    href="/admin/delete-coupon/<%=response._id%>"
+                    class="btn btn-danger"
+                    onclick="event.preventDefault(); deleteCoupon('<%= response.couponName %>', '<%= response._id %>')"
+                    >Delete</a
+                  >
+
+                  <!-- <td>
                       <%if(response.blocked){%>
                         
                         <a href ="/admin/unblock-coupon/<%= response._id %>" class="btn btn-success">UnBlock</a>
@@ -56,56 +63,54 @@
               
                       <%}%>
                   </td> -->
-
-              </td>
-                </tr>
-          <% }) %>
-              </tbody>
-            </table>
-          </div>
-          <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-start">
-                <% for(let i=1;i<=pages2;i++){%>
-                <li class="page-item active">
-                  <a class="page-link" href="/admin/view-coupons?page=<%=i%>"
-                    ><%= i%></a
-                  >
-                </li>
-                <%}%>
-                <!-- <li class="page-item">
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-start">
+              <% for(let i=1;i<=pages2;i++){%>
+              <li class="page-item active">
+                <a class="page-link" href="/admin/view-coupons?page=<%=i%>"
+                  ><%= i%></a
+                >
+              </li>
+              <%}%>
+              <!-- <li class="page-item">
                     <a class="page-link" href="#"
                       ><i class="fi-rs-angle-double-small-right"></i
                     ></a>
                   </li> -->
-              </ul>
-            </nav>
-          </div>
+            </ul>
+          </nav>
         </div>
-        <!-- table-responsive end// -->
       </div>
+      <!-- table-responsive end// -->
     </div>
-  </section>
+  </div>
+</section>
 
-
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const swalDeleteBtns = document.querySelectorAll('.swal-delete');
+  document.addEventListener("DOMContentLoaded", function () {
+    const swalDeleteBtns = document.querySelectorAll(".swal-delete");
     swalDeleteBtns.forEach((btn) => {
-      btn.addEventListener('click', (event) => {
+      btn.addEventListener("click", (event) => {
         event.preventDefault();
-        const productName = event.currentTarget.getAttribute('data-product-name');
+        const productName =
+          event.currentTarget.getAttribute("data-product-name");
         swal({
-          title: 'Are you sure?',
+          title: "Are you sure?",
           text: `${productName} will be permanently deleted!`,
-          icon: 'warning',
-          buttons: ['Cancel', 'Delete'],
+          icon: "warning",
+          buttons: ["Cancel", "Delete"],
           dangerMode: true,
-        })
-        .then((willDelete) => {
+        }).then((willDelete) => {
           if (willDelete) {
-            window.location.href = event.currentTarget.getAttribute('/');
+            window.location.href = event.currentTarget.getAttribute("/");
           }
         });
       });
@@ -115,18 +120,18 @@
 
 <script>
   function deleteCoupon(couponName, couponId) {
-      Swal.fire({
-          title: 'Are you sure?',
-          text: `Do you want to delete the category "${couponName}"?`,
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#dc3545',
-          cancelButtonColor: '#6c757d',
-          confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              window.location.href = `/admin/delete-coupon/${couponId}`;
-          }
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: `Do you want to delete the category "${couponName}"?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#dc3545",
+      cancelButtonColor: "#6c757d",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = `/admin/delete-coupon/${couponId}`;
+      }
+    });
   }
-  </script>
+</script>

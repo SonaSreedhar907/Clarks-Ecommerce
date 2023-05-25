@@ -1,69 +1,65 @@
 <section class="">
-    <div class="container d-flex justify-content-center">
-      <div class="row w-75 mt-5">
-        <div class="col-md-12">
-          <h2 class="text-center">Users List</h2>
-          <form
-            action="/admin/add_sub"
-            method="post"
-            enctype="multipart/form-data"
-          >
-            
-          </form>
-        </div>
+  <div class="container d-flex justify-content-center">
+    <div class="row w-75 mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center">Users List</h2>
+        <form
+          action="/admin/add_sub"
+          method="post"
+          enctype="multipart/form-data"
+        ></form>
       </div>
     </div>
-  </section>
-  <!-- Table section -->
-  <section  mx-auto>
-    <div class="card-body">
-      <div class="row mt-5 mx-auto">
+  </div>
+</section>
+<!-- Table section -->
+<section mx-auto>
+  <div class="card-body">
+    <div class="row mt-5 mx-auto">
+      <div class="table-responsive">
         <div class="table-responsive">
-          <div class="table-responsive">
-            <table class="table align-middle table-nowrap mb-0" id="viewusers">
-              <thead class="table-light">
-                <tr>
-                  <th class="align-middle" scope="col">No:</th>
-                  <th class="align-middle" scope="col">User Name</th>
-                  <th class="align-middle" scope="col">Email</th>
-                  <th class="align-middle" scope="col">Phone Number</th>
-                  <th class="align-middle" scope="col">Option</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% user.forEach(function(user,index) { %>
-                <tr>
-                  <td> <%=index+1 %> </td>
-                  <td><%= user.username %></td> 
-                  <td><%= user.email %></td>
-                  <td><%= user.phoneNumber %></td>
-                  <td>
-                      <%if(user.blocked){%>
-                        
-                        <a href ="/admin/unblock-users/<%= user._id %>" class="btn btn-success">UnBlock</a>
-                 
-                        
-                      <%}
-                      else{%>
-                        <a href ="/admin/block-users/<%= user._id %>" class="btn btn-danger">Block</a>
+          <table class="table align-middle table-nowrap mb-0" id="viewusers">
+            <thead class="table-light">
+              <tr>
+                <th class="align-middle" scope="col">No:</th>
+                <th class="align-middle" scope="col">User Name</th>
+                <th class="align-middle" scope="col">Email</th>
+                <th class="align-middle" scope="col">Phone Number</th>
+                <th class="align-middle" scope="col">Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% user.forEach(function(user,index) { %>
+              <tr>
+                <td><%=index+1 %></td>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td><%= user.phoneNumber %></td>
+                <td>
+                  <%if(user.blocked){%>
 
-              
-                      <%}
-                        %>
+                  <a
+                    href="/admin/unblock-users/<%= user._id %>"
+                    class="btn btn-success"
+                    >UnBlock</a
+                  >
 
+                  <%} else{%>
+                  <a
+                    href="/admin/block-users/<%= user._id %>"
+                    class="btn btn-danger"
+                    >Block</a
+                  >
 
-
-                  </td>
-    
-                 
-                </tr>
-                <% }) %>
-              </tbody>
-            </table>
-          </div>
+                  <%} %>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
         </div>
-        <!-- table-responsive end// -->
       </div>
+      <!-- table-responsive end// -->
     </div>
-  </section>
-  
+  </div>
+</section>

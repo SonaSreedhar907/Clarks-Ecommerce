@@ -1,197 +1,208 @@
 <section class="content-main">
-    <form action="/admin/add-product" 
-          method="POST"
-          enctype="multipart/form-data" 
-          onsubmit="return validateForm()">
-                 <div class="row">
-                     
-                    <div class="col-9">
-                        <div class="content-header">
-                            <h2 class="content-title">Add New Product</h2>
-    
-                          
-                         
-                            <div>
-                              
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h4>Basic</h4>
-                            </div>
-                            <div class="card-body">
-                               
-                                    <div class="mb-4">
-                                        <label for="name" class="form-label">Product Name</label>
-                                        <input type="text" id="name" placeholder="Title" class="form-control" name="name" required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="form-label" for="description">Description</label>
-                                        <input type="text" id="description" name="description" class="form-control" required />
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="mb-4">
-                                                <label class="form-label" for="price">Price</label>
-                                                <div class="row gx-2">
-                                                    <input type="number" id="price" name="Price" class="form-control" required />
-                                                </div>
-    <br>
-                                                <label class="form-label" for="quantity">Quantity</label>
-                                                <div class="row gx-2">
-                                                    <input type="number" id="quantity" name="quantity" class="form-control" required />
-                                                </div>
-    <br>
-                                                <label class="form-label" for="Category">Category</label>
-                                                <select class="form-select" id="category" name="category" required>
-                                                    <% availCategory.forEach(function(availCategory,index) { %>
-                                                    <option value="<%= availCategory.CategoryName%>">
-                                                      <%= availCategory.CategoryName%>
-                                                    </option>
-                                                    <% }) %>
-                                                  </select>
-    
-    
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                          
-                                        </div>
-                                     
-                                    </div>
-                                    
-                                  
-                                    <button type="submit" onclick="hideDiv()" class="btn btn-md rounded font-sm hover-up" >Submit</button>
-                                
-                            </div>
-                        </div> <!-- card end// -->
-                       
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h4>Media</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="input-upload"> 
-                                    <img src="/assets/imgs/theme/upload.svg" alt="" id="img1">
-                            
-                                </div>
-                            </div>
-                        </div> <!-- card end// -->
-                       
-                        <!-- card end// -->
-    
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h4>Media</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="input-upload">
-                                    <img src="/assets/imgs/theme/upload.svg" alt="" id="img2">
-                                                            
-                                     </div>
-                            </div>
-                        </div>
-    
-                        
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h4>Media</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="input-upload">
-                                    <img src="/assets/imgs/theme/upload.svg" alt="" id="img3">
-                                         
-                                 </div>
-                            </div>
-                        </div>     
-    
-                       
-                        <!-- card end// -->
-    
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h4>Media</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="input-upload">
-                                    <img src="/assets/imgs/theme/upload.svg" alt="" id="img4">
-                                <input class="form-control" onchange="function5(event)" name="images" type="file" multiple required>      
-                                </div>
-                            </div>
-                        </div>
-                  
-                    </div> 
-              
-    
-                    
-                </div>
-                </form>
+  <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-9">
+        <div class="content-header">
+          <h2 class="content-title">Add New Product</h2>
 
-        
-            </section>
-    
-          
-              <script>
-                
-                function hideDiv() {
-      document.getElementById('alert').style.display = 'none';
-    }
-    
-    setTimeout(hideDiv, 1000); // Hide the div after 3 seconds (3000 milliseconds)
-                function function5(event){
-                document.getElementById('img1').src=URL.createObjectURL(event.target.files[0] )
-                document.getElementById('img2').src=URL.createObjectURL(event.target.files[1])
-                document.getElementById('img3').src=URL.createObjectURL(event.target.files[2])
-                document.getElementById('img4').src=URL.createObjectURL(event.target.files[3])
-             
-            }
-    
-              </script>
-    
-    <script>
-        function validateForm() {
-          var name = document.getElementById("name").value;
-          var description = document.getElementById("description").value;
-          var quantity = document.getElementById("quantity").value;
-          var price = document.getElementById("price").value;
-          var category = document.getElementById("category").value;
-          var image = document.getElementById("image").value;
-      
-          if (name == "") {
-            alert("Product name must be filled out");
-            return false;
-          }
-          
-          if (description == "") {
-            alert("Description must be filled out");
-            return false;
-          }
-      
-          if (quantity == "" || quantity <= 0) {
-            alert("Quantity must be a positive number");
-            return false;
-          }
-      
-          if (price == "" || price <= 0) {
-            alert("Price must be a positive number");
-            return false;
-          }
-      
-          if (category == "") {
-            alert("Category must be selected");
-            return false;
-          }
-      
-          if (image == "") {
-            alert("Image must be uploaded");
-            return false;
-          }
-        }
-      </script>
-  
+          <div></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Basic</h4>
+          </div>
+          <div class="card-body">
+            <div class="mb-4">
+              <label for="name" class="form-label">Product Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Title"
+                class="form-control"
+                name="name"
+                required
+              />
+              <div id="titleError" class="invalid-feedback"></div>
+            </div>
+            <!-- <div class="card-body">
+                                        <div class="mb-4">
+                                            <label for="product_name" class="form-label">Product Name</label>
+                                            <input type="text" placeholder="Title" class="form-control" name="title" id="name"
+                                                required />
+                                            <div id="titleError" class="invalid-feedback"></div>
+                                        </div> -->
+
+            <div class="mb-4">
+              <label class="form-label" for="description">Description</label>
+              <input
+                type="text"
+                id="description"
+                name="description"
+                class="form-control"
+                required
+              />
+              <div id="descriptionError" class="invalid-feedback"></div>
+            </div>
+            <!-- <div class="mb-4">
+                                        <label class="form-label">Full description</label>
+                                        <textarea name="description" placeholder="Description" class="form-control"
+                                            id="description" rows="4" required></textarea>
+                                        <div id="descriptionError" class="invalid-feedback"></div>
+                                    </div> -->
+
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label class="form-label" for="price">Price</label>
+                  <div class="row gx-2">
+                    <input
+                      type="number"
+                      id="price"
+                      name="Price"
+                      class="form-control"
+                      required
+                    />
+                    <div id="priceError" class="invalid-feedback"></div>
+                  </div>
+                  <!-- <div class="row gx-2">
+                                                    <input placeholder="₹" type="number" name="price" id="Price"
+                                                        class="form-control" required />
+                                                    <div id="priceError" class="invalid-feedback"></div>
+                                                </div> -->
+
+                  <br />
+                  <label class="form-label" for="quantity">Quantity</label>
+                  <div class="row gx-2">
+                    <input
+                      type="number"
+                      id="quantity"
+                      name="quantity"
+                      class="form-control"
+                      required
+                    />
+                    <div id="stockError" class="invalid-feedback"></div>
+                  </div>
+                  <!-- <div class="row gx-2">
+                                                    <input placeholder="" type="number" name="quantity" id="quantity"
+                                                        class="form-control" required />
+                                                    <div id="stockError" class="invalid-feedback"></div>
+                                                </div> -->
+
+                  <br />
+                  <label class="form-label" for="Category">Category</label>
+                  <select
+                    class="form-select"
+                    id="category"
+                    name="category"
+                    required
+                  >
+                    <% availCategory.forEach(function(availCategory,index) { %>
+                    <option value="<%= availCategory.CategoryName%>">
+                      <%= availCategory.CategoryName%>
+                    </option>
+                    <% }) %>
+                  </select>
+
+                  <div id="categoryError" class="invalid-feedback"></div>
+                </div>
+              </div>
+              <div class="col-lg-4"></div>
+            </div>
+
+            <button
+              type="submit"
+              onclick="return validateForm()"
+              class="btn btn-md rounded font-sm hover-up"
+            >
+              Submit        
+            </button>
+          </div>
+        </div>
+        <!-- card end// -->
+      </div>
+      <div class="col-lg-3">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            <div class="input-upload">
+              <img src="/assets/imgs/theme/upload.svg" alt="" id="img1" />
+            </div>
+          </div>
+        </div>
+        <!-- card end// -->
+
+        <!-- card end// -->
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            <div class="input-upload">
+              <img src="/assets/imgs/theme/upload.svg" alt="" id="img2" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            <div class="input-upload">
+              <img src="/assets/imgs/theme/upload.svg" alt="" id="img3" />
+            </div>
+          </div>
+        </div>
+
+        <!-- card end// -->
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            <div class="input-upload">
+              <img src="/assets/imgs/theme/upload.svg" alt="" id="img4" />
+              <input
+                class="form-control"
+                onchange="function5(event)"
+                name="images"
+                type="file"
+                multiple
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+<script>
+  function hideDiv() {
+    document.getElementById("alert").style.display = "none";
+  }
+
+  setTimeout(hideDiv, 1000); // Hide the div after 3 seconds (3000 milliseconds)
+  function function5(event) {
+    document.getElementById("img1").src = URL.createObjectURL(
+      event.target.files[0]
+    );
+    document.getElementById("img2").src = URL.createObjectURL(
+      event.target.files[1]
+    );
+    document.getElementById("img3").src = URL.createObjectURL(
+      event.target.files[2]
+    );
+    document.getElementById("img4").src = URL.createObjectURL(
+      event.target.files[3]
+    );
+  }
+</script>

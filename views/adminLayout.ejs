@@ -29,49 +29,49 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link
+      rel="stylesheet"
+      href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"
+    />
 
-  <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <style>
-    .nav-link.active {
-  font-weight: bold;
-  color: floralwhite;
-}
-  </style>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="//code.jquery.com/jquery-1.12.4.js"
+    ></script>
+    <style>
+      .nav-link.active {
+        font-weight: bold;
+        color: floralwhite;
+      }
+    </style>
     <style>
       nav ul {
         list-style-type: none;
       }
-      
+
       nav li {
         display: inline;
       }
-      
+
       nav a {
         padding: 10px;
         text-decoration: none;
       }
-      
+
       nav a.active {
         background-color: rgb(244, 221, 221);
         color: #fff;
       }
-      
-      </style>
+    </style>
   </head>
   <body>
-    <%if(locals.adminStatus){%>
-    <%-include('partials/admin-sidebar')%>
-    <%}%>
+    <%if(locals.adminStatus){%> <%-include('partials/admin-sidebar')%> <%}%>
 
-<main class="main-wrap">
-    
-    <%if(locals.adminStatus){%>
-    <%- include('partials/admin-header') %>
-    <%}%>
-    <%-body%>
-
-</main>
+    <main class="main-wrap">
+      <%if(locals.adminStatus){%> <%- include('partials/admin-header') %> <%}%>
+      <%-body%>
+    </main>
   </body>
   <script src="/js/vendors/jquery-3.6.0.min.js"></script>
   <script src="/js/vendors/bootstrap.bundle.min.js"></script>
@@ -99,54 +99,128 @@
     crossorigin="anonymous"
   ></script>
 
-
-
-
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-  <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
+  />
+  <script
+    type="text/javascript"
+    language="javascript"
+    src="https://code.jquery.com/jquery-3.5.1.js"
+  ></script>
+  <script
+    type="text/javascript"
+    language="javascript"
+    src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"
+  ></script>
 
   <!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:57 GMT -->
-  
-  
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-function logout() {
-    Swal.fire({
-        title: 'Are you sure you want to logout?',
-        icon: 'warning',
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    function logout() {
+      Swal.fire({
+        title: "Are you sure you want to logout?",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, logout'
-    }).then((result) => {
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, logout",
+      }).then((result) => {
         if (result.isConfirmed) {
-            // Redirect to logout URL or submit logout form here
-            window.location.href = '/admin/logout';
+          // Redirect to logout URL or submit logout form here
+          window.location.href = "/admin/logout";
         }
+      });
+    }
+  </script>
+  <script>
+    $(document).ready(function () {
+      $(".nav-link").click(function () {
+        $(".nav-link").removeClass("active");
+        $(this).addClass("active");
+      });
     });
-}
-</script>
-<script>
-  $(document).ready(function() {
-  $('.nav-link').click(function() {
-  $('.nav-link').removeClass('active');
-  $(this).addClass('active');
-  });
-});
-</script>
-<script>
-  const currentLocation = window.location.href;
- const navLinks = document.querySelectorAll('nav a');
- 
- navLinks.forEach(link => {
-   if (link.href === currentLocation) {
-     link.classList.add('active');
-   }
- });
- 
- </script>
-</html>
+  </script>
+  <script>
+    const currentLocation = window.location.href;
+    const navLinks = document.querySelectorAll("nav a");
 
+    navLinks.forEach((link) => {
+      if (link.href === currentLocation) {
+        link.classList.add("active");
+      }
+    });
+  </script>
+  <script>
+    function validateForm() {
+      var title = document.getElementById("name").value.trim();
+      var description = document.getElementById("description").value.trim();
+      var price = document.getElementById("Price").value.trim();
+      var stock = document.getElementById("quantity").value.trim();
+      var category = document.getElementsByName("category")[0].value;
+
+      var isValid = true;
+
+      // Check if title is not empty
+      if (title == "") {
+        document.getElementById("name").classList.add("is-invalid");
+        document.getElementById("titleError").innerHTML =
+          "Please enter a title.";
+        isValid = false;
+      } else {
+        document.getElementById("name").classList.remove("is-invalid");
+        document.getElementById("titleError").innerHTML = "";
+      }
+
+      // Check if description is not empty
+      if (description == "") {
+        document.getElementById("description").classList.add("is-invalid");
+        document.getElementById("descriptionError").innerHTML =
+          "Please enter a description.";
+        isValid = false;
+      } else {
+        document.getElementById("description").classList.remove("is-invalid");
+        document.getElementById("descriptionError").innerHTML = "";
+      }
+
+      // Check if price is a valid number
+      if (isNaN(price) || price == "" || price < 0) {
+        document.getElementById("Price").classList.add("is-invalid");
+        document.getElementById("priceError").innerHTML =
+          "Please enter a valid price.";
+        isValid = false;
+      } else {
+        document.getElementById("Price").classList.remove("is-invalid");
+        document.getElementById("priceError").innerHTML = "";
+      }
+
+      // Check if stock is a valid number
+      if (isNaN(stock) || stock == "" || stock < 0) {
+        document.getElementById("quantity").classList.add("is-invalid");
+        document.getElementById("stockError").innerHTML =
+          "Please enter a valid stock quantity.";
+        isValid = false;
+      } else {
+        document.getElementById("quantity").classList.remove("is-invalid");
+        document.getElementById("stockError").innerHTML = "";
+      }
+
+      // Check if category is selected
+      if (category == "") {
+        document.getElementsByName("category")[0].classList.add("is-invalid");
+        document.getElementById("categoryError").innerHTML =
+          "Please select a category.";
+        isValid = false;
+      } else {
+        document
+          .getElementsByName("category")[0]
+          .classList.remove("is-invalid");
+        document.getElementById("categoryError").innerHTML = "";
+      }
+
+      return isValid;
+    }
+  </script>
+</html>

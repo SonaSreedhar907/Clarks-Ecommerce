@@ -8,77 +8,134 @@
               <div class="dashboard-menu">
                 <ul class="nav flex-column" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab"
-                      aria-controls="dashboard" aria-selected="false"><i
-                        class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
+                    <a
+                      class="nav-link active"
+                      id="dashboard-tab"
+                      data-bs-toggle="tab"
+                      href="#dashboard"
+                      role="tab"
+                      aria-controls="dashboard"
+                      aria-selected="false"
+                      ><i class="fi-rs-settings-sliders mr-10"></i>Dashboard</a
+                    >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="wallet-tab" data-bs-toggle="tab" href="#wallet" role="tab"
-                      aria-controls="wallet" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Wallet</a>
+                    <a
+                      class="nav-link"
+                      id="wallet-tab"
+                      data-bs-toggle="tab"
+                      href="#wallet"
+                      role="tab"
+                      aria-controls="wallet"
+                      aria-selected="false"
+                      ><i class="fi-rs-shopping-bag mr-10"></i>Wallet</a
+                    >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab"
-                      aria-controls="orders" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
+                    <a
+                      class="nav-link"
+                      id="orders-tab"
+                      data-bs-toggle="tab"
+                      href="#orders"
+                      role="tab"
+                      aria-controls="orders"
+                      aria-selected="false"
+                      ><i class="fi-rs-shopping-bag mr-10"></i>Orders</a
+                    >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#track-orders" role="tab"
-                      aria-controls="track-orders" aria-selected="false"><i
-                        class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
+                    <a
+                      class="nav-link"
+                      id="track-orders-tab"
+                      data-bs-toggle="tab"
+                      href="#track-orders"
+                      role="tab"
+                      aria-controls="track-orders"
+                      aria-selected="false"
+                      ><i class="fi-rs-shopping-cart-check mr-10"></i>Track Your
+                      Order</a
+                    >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab"
-                      aria-controls="address" aria-selected="true"><i class="fi-rs-marker mr-10"></i>My Address</a>
+                    <a
+                      class="nav-link"
+                      id="address-tab"
+                      data-bs-toggle="tab"
+                      href="#address"
+                      role="tab"
+                      aria-controls="address"
+                      aria-selected="true"
+                      ><i class="fi-rs-marker mr-10"></i>My Address</a
+                    >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab"
-                      aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account
-                      details</a>
+                    <a
+                      class="nav-link"
+                      id="account-detail-tab"
+                      data-bs-toggle="tab"
+                      href="#account-detail"
+                      role="tab"
+                      aria-controls="account-detail"
+                      aria-selected="true"
+                      ><i class="fi-rs-user mr-10"></i>Account details</a
+                    >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/logout"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
+                    <a class="nav-link" href="/logout"
+                      ><i class="fi-rs-sign-out mr-10"></i>Logout</a
+                    >
                   </li>
                 </ul>
               </div>
             </div>
             <div class="col-md-8">
               <div class="tab-content dashboard-content">
-                <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                <div
+                  class="tab-pane fade active show"
+                  id="dashboard"
+                  role="tabpanel"
+                  aria-labelledby="dashboard-tab"
+                >
                   <div class="card">
                     <div class="card-header">
                       <% if(user) { %>
 
-                        <h5 class="mb-0">Hello <%= user.username %>! </h5>
+                      <h5 class="mb-0">Hello <%= user.username %>!</h5>
                       <% } else { %>
-                        <h5 class="mb-0">Dear Customer! </h5>
+                      <h5 class="mb-0">Dear Customer!</h5>
                       <% } %>
                     </div>
                     <div class="card-body">
-                      <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent
-                          orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit
-                          your password and account details.</a></p>
+                      <p>
+                        From your account dashboard. you can easily check &amp;
+                        view your <a href="#">recent orders</a>, manage your
+                        <a href="#">shipping and billing addresses</a> and
+                        <a href="#">edit your password and account details.</a>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="wallet" role="tabpanel" aria-labelledby="wallet-tab">
+                <div
+                  class="tab-pane fade"
+                  id="wallet"
+                  role="tabpanel"
+                  aria-labelledby="wallet-tab"
+                >
                   <div class="card-body">
-                    <% if (balance && balance.balance !== undefined && balance.balance !== null) { %>
-                      Current Balance: Rs <%= balance.balance %>
-                    <% } else { %>
-                      Current Balance: N/A
-                    <% } %>
+                    <% if (balance && balance.balance !== undefined &&
+                    balance.balance !== null) { %> Current Balance: Rs <%=
+                    balance.balance %> <% } else { %> Current Balance: N/A <% }
+                    %>
                     <div class="balance">
                       <!-- Additional content here -->
                     </div>
                   </div>
-                  
-                  
-                  <br>
+
+                  <br />
 
                   <div class="col-md-12">
                     <div class="card">
-                      <div class="card-header">
-                        Wallet History
-                      </div>
+                      <div class="card-header">Wallet History</div>
                       <div class="card-body">
                         <table class="table">
                           <thead>
@@ -90,39 +147,24 @@
                           </thead>
                           <tbody>
                             <% history.forEach(function(history) { %>
-                              <tr>
-                                <td><%= history.date.toDateString() %></td>
-                                <td><%= history._id %></td>
-                                <td>Rs <%= history.balance %></td>
-                                
-                              </tr>
+                            <tr>
+                              <td><%= history.date.toDateString() %></td>
+                              <td><%= history._id %></td>
+                              <td>Rs <%= history.balance %></td>
+                            </tr>
                             <% }) %>
                           </tbody>
                         </table>
                       </div>
                     </div>
                   </div>
-               
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
-                <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                <div
+                  class="tab-pane fade"
+                  id="orders"
+                  role="tabpanel"
+                  aria-labelledby="orders-tab"
+                >
                   <div class="card">
                     <div class="card-header">
                       <h5 class="mb-0">Your Orders</h5>
@@ -142,14 +184,23 @@
                           </thead>
                           <tbody>
                             <% orders.forEach(function(order) { %>
-                              <tr>
-                                <td><%= order._id %></td>
-                                <td><%= order.date %></td>
-                                <td><%= order.paymentMethod %></td>
-                                <td><%= order.status %></td>
-                                <td>₹<%= order.total %> for <%= order.quantity %> item</td>
-                                <td><a href="/view-order-products/<%= order._id %>" class="btn-small d-block">View</a></td>
-                              </tr>
+                            <tr>
+                              <td><%= order._id %></td>
+                              <td><%= order.date %></td>
+                              <td><%= order.paymentMethod %></td>
+                              <td><%= order.status %></td>
+                              <td>
+                                ₹<%= order.total %> for <%= order.quantity %>
+                                item
+                              </td>
+                              <td>
+                                <a
+                                  href="/view-order-products/<%= order._id %>"
+                                  class="btn-small d-block"
+                                  >View</a
+                                >
+                              </td>
+                            </tr>
                             <% }); %>
                           </tbody>
                         </table>
@@ -157,37 +208,66 @@
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="track-orders" role="tabpanel" aria-labelledby="track-orders-tab">
+                <div
+                  class="tab-pane fade"
+                  id="track-orders"
+                  role="tabpanel"
+                  aria-labelledby="track-orders-tab"
+                >
                   <div class="card">
                     <div class="card-header">
                       <h5 class="mb-0">Orders tracking</h5>
                     </div>
                     <div class="card-body contact-from-area">
-                      <p>To track your order please enter your OrderID in the box below and press "Track" button. This
-                        was given to you on your receipt and in the confirmation email you should have received.</p>
+                      <p>
+                        To track your order please enter your OrderID in the box
+                        below and press "Track" button. This was given to you on
+                        your receipt and in the confirmation email you should
+                        have received.
+                      </p>
                       <div class="row">
                         <div class="col-lg-8">
-                          <form class="contact-form-style mt-30 mb-50" action="#" method="post">
+                          <form
+                            class="contact-form-style mt-30 mb-50"
+                            action="#"
+                            method="post"
+                          >
                             <div class="input-style mb-20">
                               <label>Order ID</label>
-                              <input name="order-id" placeholder="Found in your order confirmation email" type="text"
-                                class="square">
+                              <input
+                                name="order-id"
+                                placeholder="Found in your order confirmation email"
+                                type="text"
+                                class="square"
+                              />
                             </div>
                             <div class="input-style mb-20">
                               <label>Billing email</label>
-                              <input name="billing-email" placeholder="Email you used during checkout" type="email"
-                                class="square">
+                              <input
+                                name="billing-email"
+                                placeholder="Email you used during checkout"
+                                type="email"
+                                class="square"
+                              />
                             </div>
-                            <button class="submit submit-auto-width" type="submit">Track</button>
+                            <button
+                              class="submit submit-auto-width"
+                              type="submit"
+                            >
+                              Track
+                            </button>
                           </form>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-
-
+                <div
+                  class="tab-pane fade"
+                  id="address"
+                  role="tabpanel"
+                  aria-labelledby="address-tab"
+                >
                   <div class="row">
                     <% address.forEach(function(address) { %>
                     <div class="col-lg-6">
@@ -197,18 +277,25 @@
                         </div>
                         <div class="card-body">
                           <address>
-                            Name:  <%= address.name %><br>
-                            Phone:  <%= address.phone %><br>
-                            Address 1:  <%= address.billing_address %><br>
-                            Address 2:  <%= address.billing_address2 %><br>
-                            City:  <%= address.city %><br>
-                            State:  <%= address.state %><br>
-                            Pincode:  <%= address.zipcode %>
+                            Name: <%= address.name %><br />
+                            Phone: <%= address.phone %><br />
+                            Address 1: <%= address.billing_address %><br />
+                            Address 2: <%= address.billing_address2 %><br />
+                            City: <%= address.city %><br />
+                            State: <%= address.state %><br />
+                            Pincode: <%= address.zipcode %>
                           </address>
-                          <a href="/editAddress/<%= address._id %>" class="btn-small">Edit</a>
-                          <a style="margin-left:100px;"  class="btn-small"
-                          onclick="deleteAddress('<%= address._id %>')">Delete</a>
-
+                          <a
+                            href="/editAddress/<%= address._id %>"
+                            class="btn-small"
+                            >Edit</a
+                          >
+                          <a
+                            style="margin-left: 100px"
+                            class="btn-small"
+                            onclick="deleteAddress('<%= address._id %>')"
+                            >Delete</a
+                          >
                         </div>
                       </div>
                     </div>
@@ -217,97 +304,211 @@
                       <div class="form-group">
                         <div class="chek-form">
                           <div class="custome-checkbox">
-                            <input class="form-check-input" type="checkbox" name="checkbox" id="differentaddress">
-                            <label class="form-check-label label_info" data-bs-toggle="collapse"
-                              data-target="#collapseAddress" href="#collapseAddress" aria-controls="collapseAddress"
-                              for="differentaddress"><span> <a href="#" class="btn-small">Add
-                                  Address</a></span></label>
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              name="checkbox"
+                              id="differentaddress"
+                            />
+                            <label
+                              class="form-check-label label_info"
+                              data-bs-toggle="collapse"
+                              data-target="#collapseAddress"
+                              href="#collapseAddress"
+                              aria-controls="collapseAddress"
+                              for="differentaddress"
+                              ><span>
+                                <a href="#" class="btn-small"
+                                  >Add Address</a
+                                ></span
+                              ></label
+                            >
                           </div>
                         </div>
                       </div>
-                      <div id="collapseAddress" class="different_address collapse in">
+                      <div
+                        id="collapseAddress"
+                        class="different_address collapse in"
+                      >
                         <form action="/profile" method="post" id="address">
-                          <input type="hidden" name="userId" value="{{user._id}}">
+                          <input
+                            type="hidden"
+                            name="userId"
+                            value="{{ user._id }}"
+                          />
                           <div class="form-group">
                             <label for="name">First Name *</label>
-                            <input type="text" name="name" id="name" placeholder="Enter your first name"
-                              onblur="namecheck()" required>
-                            <label id="nmlabel" for="name" style="display: none; color:red;">This field is
-                              required</label>
-                            <label id="nmlabel-01" for="name" style="display: none; color:red;">Name doesn't start
-                              with a number</label>
-                            <label id="nmlabel-02" for="name" style="display: none; color:red;">Name doesn't contain
-                              special characters</label>
+                            <input
+                              type="text"
+                              name="name"
+                              id="name"
+                              placeholder="Enter your first name"
+                              onblur="namecheck()"
+                              required
+                            />
+                            <label
+                              id="nmlabel"
+                              for="name"
+                              style="display: none; color: red"
+                              >This field is required</label
+                            >
+                            <label
+                              id="nmlabel-01"
+                              for="name"
+                              style="display: none; color: red"
+                              >Name doesn't start with a number</label
+                            >
+                            <label
+                              id="nmlabel-02"
+                              for="name"
+                              style="display: none; color: red"
+                              >Name doesn't contain special characters</label
+                            >
                           </div>
                           <div class="form-group">
                             <label for="phone">Phone *</label>
-                            <input type="tel" name="phone" id="phone" placeholder="Enter your phone number"
-                              onblur="phonecheck()" required>
-                            <label id="ml" for="phone" style="display: none; color:red;">This field is
-                              required</label>
-                            <label id="ml-01" for="phone" style="display: none; color:red;">Minimum 10
-                              digits required</label>
-
+                            <input
+                              type="tel"
+                              name="phone"
+                              id="phone"
+                              placeholder="Enter your phone number"
+                              onblur="phonecheck()"
+                              required
+                            />
+                            <label
+                              id="ml"
+                              for="phone"
+                              style="display: none; color: red"
+                              >This field is required</label
+                            >
+                            <label
+                              id="ml-01"
+                              for="phone"
+                              style="display: none; color: red"
+                              >Minimum 10 digits required</label
+                            >
                           </div>
                           <div class="form-group">
                             <label for="address">Address *</label>
-                            <input type="text" name="billing_address" id="address" placeholder="Enter your address"
-                              onblur="addresscheck()" required>
-                            <label id="adlabel" for="address" style="display: none; color:red;">This field is
-                              required</label>
-                            <label id="adlabel-01" for="address" style="display: none; color:red;">Address doesn't start
-                              with a number</label>
-                            <label id="adlabel-02" for="address" style="display: none; color:red;">Address doesn't
-                              contain
-                              special characters</label>
-
+                            <input
+                              type="text"
+                              name="billing_address"
+                              id="address"
+                              placeholder="Enter your address"
+                              onblur="addresscheck()"
+                              required
+                            />
+                            <label
+                              id="adlabel"
+                              for="address"
+                              style="display: none; color: red"
+                              >This field is required</label
+                            >
+                            <label
+                              id="adlabel-01"
+                              for="address"
+                              style="display: none; color: red"
+                              >Address doesn't start with a number</label
+                            >
+                            <label
+                              id="adlabel-02"
+                              for="address"
+                              style="display: none; color: red"
+                              >Address doesn't contain special characters</label
+                            >
                           </div>
                           <div class="form-group">
                             <label for="address2">Address Line 2</label>
-                            <input type="text" name="billing_address2" id="address2"
-                              placeholder="Enter your address line 2" onblur="addressLcheck()" required>
-                            <label id="adLlabel" for="address2" style="display: none; color:red;">This field is
-                              required</label>
-                            <label id="adLlabel-01" for="address2" style="display: none; color:red;">Address doesn't
-                              start
-                              with a number</label>
-                            <label id="adLlabel-02" for="address2" style="display: none; color:red;">Address doesn't
-                              contain
-                              special characters</label>
+                            <input
+                              type="text"
+                              name="billing_address2"
+                              id="address2"
+                              placeholder="Enter your address line 2"
+                              onblur="addressLcheck()"
+                              required
+                            />
+                            <label
+                              id="adLlabel"
+                              for="address2"
+                              style="display: none; color: red"
+                              >This field is required</label
+                            >
+                            <label
+                              id="adLlabel-01"
+                              for="address2"
+                              style="display: none; color: red"
+                              >Address doesn't start with a number</label
+                            >
+                            <label
+                              id="adLlabel-02"
+                              for="address2"
+                              style="display: none; color: red"
+                              >Address doesn't contain special characters</label
+                            >
                           </div>
                           <div class="form-group">
                             <label for="city">City/Town *</label>
-                            <input type="text" name="city" id="city" placeholder="Enter your city/town"
-                              onblur="addresscheck()" required>
-                            <label id="adlabel" for="address2" style="display: none; color:red;">This field is
-                              required</label>
-                            <label id="adlabel-01" for="address2" style="display: none; color:red;">Address doesn't
-                              start
-                              with a number</label>
-                            <label id="adlabel-02" for="address2" style="display: none; color:red;">Address doesn't
-                              contain
-                              special characters</label>
-
+                            <input
+                              type="text"
+                              name="city"
+                              id="city"
+                              placeholder="Enter your city/town"
+                              onblur="addresscheck()"
+                              required
+                            />
+                            <label
+                              id="adlabel"
+                              for="address2"
+                              style="display: none; color: red"
+                              >This field is required</label
+                            >
+                            <label
+                              id="adlabel-01"
+                              for="address2"
+                              style="display: none; color: red"
+                              >Address doesn't start with a number</label
+                            >
+                            <label
+                              id="adlabel-02"
+                              for="address2"
+                              style="display: none; color: red"
+                              >Address doesn't contain special characters</label
+                            >
                           </div>
                           <div class="form-group">
                             <label for="state">State/County *</label>
-                            <input type="text" name="state" id="state" required placeholder="Enter your state/county">
-
+                            <input
+                              type="text"
+                              name="state"
+                              id="state"
+                              required
+                              placeholder="Enter your state/county"
+                            />
                           </div>
                           <div class="form-group">
                             <label for="zipcode">Postcode/ZIP *</label>
-                            <input type="text" name="zipcode" id="zipcode" required
-                              placeholder="Enter your postcode/ZIP">
-
+                            <input
+                              type="text"
+                              name="zipcode"
+                              id="zipcode"
+                              required
+                              placeholder="Enter your postcode/ZIP"
+                            />
                           </div>
-                          <button type="submit" class="btn btn-success mt-4">Submit</button>
+                          <button type="submit" class="btn btn-success mt-4">
+                            Submit
+                          </button>
                         </form>
-
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
+                <div
+                  class="tab-pane fade"
+                  id="account-detail"
+                  role="tabpanel"
+                  aria-labelledby="account-detail-tab"
+                >
                   <div class="card">
                     <div class="card-header">
                       <h5>Account Details</h5>
@@ -318,35 +519,82 @@
                           <% if (user) { %>
                           <div class="form-group col-md-12">
                             <label> Name <span class="required">*</span></label>
-                            <input required="" class="form-control square" name="Name" type="text"
-                            value="<%= user.username %>">
+                            <input
+                              required=""
+                              class="form-control square"
+                              name="Name"
+                              type="text"
+                              value="<%= user.username %>"
+                            />
                           </div>
                           <div class="form-group col-md-12">
-                            <label>Mobile Number<span class="required">*</span></label>
-                            <input required="" class="form-control square" name="phone" type="phone"
-                              value="<%= user.phoneNumber %>">
+                            <label
+                              >Mobile Number<span class="required"
+                                >*</span
+                              ></label
+                            >
+                            <input
+                              required=""
+                              class="form-control square"
+                              name="phone"
+                              type="phone"
+                              value="<%= user.phoneNumber %>"
+                            />
                           </div>
                           <div class="form-group col-md-12">
-                            <label>Email Address <span class="required">*</span></label>
-                            <input required="" class="form-control square" name="Email" type="email"
-                              value=>
+                            <label
+                              >Email Address
+                              <span class="required">*</span></label
+                            >
+                            <input required="" class="form-control square"
+                            name="Email" type="email" value=>
                           </div>
                           <% } %>
                           <div class="form-group col-md-12">
-                            <label>Current Password <span class="required">*</span></label>
-                            <input required="" class="form-control square" name="password" type="password">
+                            <label
+                              >Current Password
+                              <span class="required">*</span></label
+                            >
+                            <input
+                              required=""
+                              class="form-control square"
+                              name="password"
+                              type="password"
+                            />
                           </div>
                           <div class="form-group col-md-12">
-                            <label>New Password <span class="required">*</span></label>
-                            <input required="" class="form-control square" name="npassword" type="password">
+                            <label
+                              >New Password
+                              <span class="required">*</span></label
+                            >
+                            <input
+                              required=""
+                              class="form-control square"
+                              name="npassword"
+                              type="password"
+                            />
                           </div>
                           <div class="form-group col-md-12">
-                            <label>Confirm Password <span class="required">*</span></label>
-                            <input required="" class="form-control square" name="cpassword" type="password">
+                            <label
+                              >Confirm Password
+                              <span class="required">*</span></label
+                            >
+                            <input
+                              required=""
+                              class="form-control square"
+                              name="cpassword"
+                              type="password"
+                            />
                           </div>
                           <div class="col-md-12">
-                            <button type="submit" class="btn btn-fill-out submit" name="submit"
-                              value="Submit">Save</button>
+                            <button
+                              type="submit"
+                              class="btn btn-fill-out submit"
+                              name="submit"
+                              value="Submit"
+                            >
+                              Save
+                            </button>
                           </div>
                         </div>
                       </form>
@@ -362,77 +610,67 @@
   </section>
 </body>
 <script>
-     function deleteAddress(addressId){
-
-$.ajax({
-    url:'/deleteAddress/'+addressId,
-    method:'get',
-    success:(response)=>{
-        location.reload()
-    }
-})
- }
+  function deleteAddress(addressId) {
+    $.ajax({
+      url: "/deleteAddress/" + addressId,
+      method: "get",
+      success: (response) => {
+        location.reload();
+      },
+    });
+  }
 
   function addresscheck() {
-    let name = document.getElementById("address").value
-    let nm = null
-    nm = name.trim()
+    let name = document.getElementById("address").value;
+    let nm = null;
+    nm = name.trim();
     var letters = /^[A-Za-z]+$/;
     var spc = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+[A-Za-z]*$/;
     document.getElementById("address").value = nm;
     if (nm == "" || name == null) {
-      document.getElementById("adlabel").style.display = "block"
-      return false
-    }
-    else if (!isNaN(nm[0])) {
-      document.getElementById("adlabel").style.display = "none"
-      document.getElementById("adlabel-01").style.display = "block"
-      return false
-    }
-    else if (nm.match(spc)) {
-      document.getElementById("adlabel").style.display = "none"
-      document.getElementById("adlabel-01").style.display = "none"
-      document.getElementById("adlabel-02").style.display = "block"
-      return false
-    }
-    else {
-      document.getElementById("adlabel").style.display = "none"
-      document.getElementById("adlabel-01").style.display = "none"
-      document.getElementById("adlabel-02").style.display = "none"
-      return true
-
+      document.getElementById("adlabel").style.display = "block";
+      return false;
+    } else if (!isNaN(nm[0])) {
+      document.getElementById("adlabel").style.display = "none";
+      document.getElementById("adlabel-01").style.display = "block";
+      return false;
+    } else if (nm.match(spc)) {
+      document.getElementById("adlabel").style.display = "none";
+      document.getElementById("adlabel-01").style.display = "none";
+      document.getElementById("adlabel-02").style.display = "block";
+      return false;
+    } else {
+      document.getElementById("adlabel").style.display = "none";
+      document.getElementById("adlabel-01").style.display = "none";
+      document.getElementById("adlabel-02").style.display = "none";
+      return true;
     }
   }
 
   function addressLcheck() {
-    let name = document.getElementById("address2").value
-    let nm = null
-    nm = name.trim()
+    let name = document.getElementById("address2").value;
+    let nm = null;
+    nm = name.trim();
     var letters = /^[A-Za-z]+$/;
     var spc = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+[A-Za-z]*$/;
     document.getElementById("address2").value = nm;
     if (nm == "" || name == null) {
-      document.getElementById("adLlabel").style.display = "block"
-      return false
-    }
-    else if (!isNaN(nm[0])) {
-      document.getElementById("adLlabel").style.display = "none"
-      document.getElementById("adLlabel-01").style.display = "block"
-      return false
-    }
-    else if (nm.match(spc)) {
-      document.getElementById("adLlabel").style.display = "none"
-      document.getElementById("adLlabel-01").style.display = "none"
-      document.getElementById("adLlabel-02").style.display = "block"
-      return false
-    }
-    else {
-      document.getElementById("adLlabel").style.display = "none"
-      document.getElementById("adLlabel-01").style.display = "none"
-      document.getElementById("adLlabel-02").style.display = "none"
-      return true
-
+      document.getElementById("adLlabel").style.display = "block";
+      return false;
+    } else if (!isNaN(nm[0])) {
+      document.getElementById("adLlabel").style.display = "none";
+      document.getElementById("adLlabel-01").style.display = "block";
+      return false;
+    } else if (nm.match(spc)) {
+      document.getElementById("adLlabel").style.display = "none";
+      document.getElementById("adLlabel-01").style.display = "none";
+      document.getElementById("adLlabel-02").style.display = "block";
+      return false;
+    } else {
+      document.getElementById("adLlabel").style.display = "none";
+      document.getElementById("adLlabel-01").style.display = "none";
+      document.getElementById("adLlabel-02").style.display = "none";
+      return true;
     }
   }
-
 </script>

@@ -1,89 +1,101 @@
 <body>
-    <section class="content-main ">
-      <div class="content-header">
-        <div>
-          <h2 class="content-title card-title">Sales </h2>
-          <p></p>
-        </div>
+  <section class="content-main">
+    <div class="content-header">
+      <div>
+        <h2 class="content-title card-title">Sales</h2>
+        <p></p>
       </div>
-      <div class="card mb-4">
-        <!-- card-header end// -->
-        <div class="card-body">
-          <div class="table-responsive">
-              <form action="/admin/sales"  method="POST">
-              <label for="startDate">Start Date:</label>
-              <input type="date" id="startDate" name="startDate">
-              <label for="endDate">End Date:</label>
-              <input type="date" id="endDate" name="endDate">
-              <button type="submit">Search</button>
-            </form>
-            <button type="button" class="btn btn_print">Export to PDF</button>
-            <button type="button" class="btn" onclick="export_data()">Export to Excel</button>
-           
-            <table class="table table-hover" id="container_content">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Payment</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% sales.forEach(function(sale) { %>
-                    <tr>
-                      <td><%= sale._id %></td>
-                      <td><b><%= sale.Name %></b></td>
-                      <td><%= sale.phone %></td>
-                      <td><%= sale.date %></td>
-                      <td><%= sale.paymentMethod %></td>
-                      <td>₹<%= sale.total %> for <%= sale.products.length %> item</td>
-                      <td><span class="badge rounded-pill alert-warning"><%= sale.status %></span></td>
-                    </tr>
-                  <% }); %>
-              </tbody>
-            </table>
-          </div> <!-- table-responsive //end -->
-        </div> <!-- card-body end// -->
-      </div> <!-- card end// -->
-    </section> <!-- content-main end// -->
-  
-  </body>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"
-    integrity="sha512-z8oDcdy0YCXeQb0q3AEq8e/vWVZvH/6UuV7x/8zUbwH6wPxx6/EjN7I1MN8WnJGZv+PluU7xJIR6aM8fMhhJ6w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-  <script>
-    $(document).ready(function ($) {
-      $(document).on("click", ".btn_print", function (event) {
-        event.preventDefault();
-        var element = document.getElementById("container_content");
-        let randomNumber = Math.floor(Math.random() * (10000000000 - 1)) + 1;
-        var opt = {
-          margin: 0,
-          filename: "SalesReport" + randomNumber + ".pdf",
-          html2canvas: { scale: 10 },
-          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-        };
-  
-        html2pdf().set(opt).from(element).save();
-      });
+    </div>
+    <div class="card mb-4">
+      <!-- card-header end// -->
+      <div class="card-body">
+        <div class="table-responsive">
+          <form action="/admin/sales" method="POST">
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" />
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate" />
+            <button type="submit">Search</button>
+          </form>
+          <button type="button" class="btn btn_print">Export to PDF</button>
+          <button type="button" class="btn" onclick="export_data()">
+            Export to Excel
+          </button>
+
+          <table class="table table-hover" id="container_content">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Date</th>
+                <th scope="col">Payment</th>
+                <th scope="col">Total</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% sales.forEach(function(sale) { %>
+              <tr>
+                <td><%= sale._id %></td>
+                <td><b><%= sale.Name %></b></td>
+                <td><%= sale.phone %></td>
+                <td><%= sale.date %></td>
+                <td><%= sale.paymentMethod %></td>
+                <td>₹<%= sale.total %> for <%= sale.products.length %> item</td>
+                <td>
+                  <span class="badge rounded-pill alert-warning"
+                    ><%= sale.status %></span
+                  >
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+        <!-- table-responsive //end -->
+      </div>
+      <!-- card-body end// -->
+    </div>
+    <!-- card end// -->
+  </section>
+  <!-- content-main end// -->
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"
+  integrity="sha512-z8oDcdy0YCXeQb0q3AEq8e/vWVZvH/6UuV7x/8zUbwH6wPxx6/EjN7I1MN8WnJGZv+PluU7xJIR6aM8fMhhJ6w=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script>
+  $(document).ready(function ($) {
+    $(document).on("click", ".btn_print", function (event) {
+      event.preventDefault();
+      var element = document.getElementById("container_content");
+      let randomNumber = Math.floor(Math.random() * (10000000000 - 1)) + 1;
+      var opt = {
+        margin: 0,
+        filename: "SalesReport" + randomNumber + ".pdf",
+        html2canvas: { scale: 10 },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      };
+
+      html2pdf().set(opt).from(element).save();
     });
-  
-    function export_data() {
-      let data = document.getElementById("container_content");
-      var fp = XLSX.utils.table_to_book(data, { sheet: "vishal" });
-      XLSX.write(fp, {
-        bookType: "xlsx",
-        type: "base64",
-      });
-      XLSX.writeFile(fp, "test.xlsx");
-    }
-  </script>
+  });
+
+  function export_data() {
+    let data = document.getElementById("container_content");
+    var fp = XLSX.utils.table_to_book(data, { sheet: "vishal" });
+    XLSX.write(fp, {
+      bookType: "xlsx",
+      type: "base64",
+    });
+    XLSX.writeFile(fp, "test.xlsx");
+  }
+</script>

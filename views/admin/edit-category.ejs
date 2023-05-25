@@ -1,45 +1,45 @@
 <section class="">
-    <div class="container d-flex justify-content-center">
-      <div class="row w-75 mt-5">
-        <div class="col-md-12">
-          <h2 class="text-center">Edit category</h2>
-          <form
-            action="/admin/edit-category/<%= editCat.id%>"
-            method="POST"
-           
-          >
-            <label for="">Category Name</label>
-            <input type="text" name="categoryname" class="form-control" value="<%= editCat.CategoryName %>" />
-            <button type="submit" class="btn btn-success mt-4">Submit</button>
-          </form>
-        </div>
+  <div class="container d-flex justify-content-center">
+    <div class="row w-75 mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center">Edit category</h2>
+        <form action="/admin/edit-category/<%= editCat.id%>" method="POST">
+          <label for="">Category Name</label>
+          <input
+            type="text"
+            name="categoryname"
+            class="form-control"
+            value="<%= editCat.CategoryName %>"
+          />
+          <button type="submit" class="btn btn-success mt-4">Submit</button>
+        </form>
       </div>
     </div>
-  </section>
-  <!-- Table section -->
- 
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
-  <script>
-    function deleteAlert()
-   {
-  
+  </div>
+</section>
+<!-- Table section -->
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css"
+  rel="stylesheet"
+/>
+<script>
+  function deleteAlert() {
     swal({
-    title: "Are you sure?",
-    text: "Once deleted, you will not be able to recover this imaginary file!",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
-  .then((willDelete) => {
-    if (willDelete) {
-      swal("Poof! Your imaginary file has been deleted!", {
-        icon: "success",
-      });
-    } else {
-      swal("Your imaginary file is safe!");
-    }
-  });
-    
-  } 
-  </script>
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  }
+</script>

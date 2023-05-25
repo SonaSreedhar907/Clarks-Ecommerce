@@ -1,88 +1,102 @@
 <body>
   <section class="content-main">
-      <div class="content-header">
-          <div>
-              <h2 class="content-title card-title">Order List </h2>
-              <p></p>
-          </div>
+    <div class="content-header">
+      <div>
+        <h2 class="content-title card-title">Order List</h2>
+        <p></p>
       </div>
-      <div class="card mb-4">
-          <!-- card-header end// -->
-          <div class="card-body">
-              <div class="table-responsive">
-                  <table class="table table-hover" id="ordersTable">
-                      <thead>
-                          <tr>
-                              <th>#ID</th>
-                              <th scope="col">Name</th>
-                              <th scope="col">Phone</th>
-                              <th scope="col">Total</th>
-                              <th scope="col">Status</th>
-                              <th scope="col">Date</th>
-                              <th scope="col" class="text-end"> Action </th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                        <% orders.forEach(function(order) { %>
-                          <tr>
-                            <td><%= order._id %></td>
-                            <td><b><%= order.Name %></b></td>
-                            <td><%= order.phone %></td>
-                            <td>₹<%= order.total %> for <%= order.products.length %> item</td>
-                            <td><span class="badge rounded-pill alert-warning"><%= order.status %></span></td>
-                            <td class="date-cell"><%= order.date %></td>
-                            <td class="text-end">
-                              <a href="/admin/order-details/<%= order._id %>" class="btn btn-md rounded font-sm">Detail</a>
-                              <div class="dropdown">
-                                <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">View detail</a>
-                                  <a class="dropdown-item" href="#">Edit info</a>
-                                  <a class="dropdown-item text-danger" href="#">Delete</a>
-                                </div>
-                              </div> <!-- dropdown //end -->
-                            </td>
-                          </tr>
-                        <% }) %>
-                      </tbody>
-                      
-                          </table>
-                      </div> <!-- table-responsive //end -->
-                      <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
-                        <nav aria-label="Page navigation example">
-                          <ul class="pagination justify-content-start">
-                            <% for(let i=1;i<=pages2;i++){%>
-                            <li class="page-item active">
-                              <a class="page-link" href="/admin/orders?page=<%=i%>"
-                                ><%= i%></a
-                              >
-                            </li>
-                            <%}%>
-                            <!-- <li class="page-item">
+    </div>
+    <div class="card mb-4">
+      <!-- card-header end// -->
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover" id="ordersTable">
+            <thead>
+              <tr>
+                <th>#ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Total</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+                <th scope="col" class="text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% orders.forEach(function(order) { %>
+              <tr>
+                <td><%= order._id %></td>
+                <td><b><%= order.Name %></b></td>
+                <td><%= order.phone %></td>
+                <td>
+                  ₹<%= order.total %> for <%= order.products.length %> item
+                </td>
+                <td>
+                  <span class="badge rounded-pill alert-warning"
+                    ><%= order.status %></span
+                  >
+                </td>
+                <td class="date-cell"><%= order.date %></td>
+                <td class="text-end">
+                  <a
+                    href="/admin/order-details/<%= order._id %>"
+                    class="btn btn-md rounded font-sm"
+                    >Detail</a
+                  >
+                  <div class="dropdown">
+                    <a
+                      href="#"
+                      data-bs-toggle="dropdown"
+                      class="btn btn-light rounded btn-sm font-sm"
+                    >
+                      <i class="material-icons md-more_horiz"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">View detail</a>
+                      <a class="dropdown-item" href="#">Edit info</a>
+                      <a class="dropdown-item text-danger" href="#">Delete</a>
+                    </div>
+                  </div>
+                  <!-- dropdown //end -->
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <!-- table-responsive //end -->
+        <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-start">
+              <% for(let i=1;i<=pages2;i++){%>
+              <li class="page-item active">
+                <a class="page-link" href="/admin/orders?page=<%=i%>"
+                  ><%= i%></a
+                >
+              </li>
+              <%}%>
+              <!-- <li class="page-item">
                                 <a class="page-link" href="#"
                                   ><i class="fi-rs-angle-double-small-right"></i
                                 ></a>
                               </li> -->
-                          </ul>
-                        </nav>
-                      </div>
-                  </div> <!-- card-body end// -->
-              </div> <!-- card end// -->
-              </section> <!-- content-main end// -->
-            </body>
-            
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- card-body end// -->
+    </div>
+    <!-- card end// -->
+  </section>
+  <!-- content-main end// -->
+</body>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-            <script>
-                var dateCells = document.querySelectorAll('.date-cell');
-                dateCells.forEach(function(cell) {
-                  var date = moment(cell.innerHTML).format('MMMM Do YYYY, h:mm:ss a');
-                  cell.innerHTML = date;
-                });
-              </script>
-                         
-            
-            
-            
-            
+<script>
+  var dateCells = document.querySelectorAll(".date-cell");
+  dateCells.forEach(function (cell) {
+    var date = moment(cell.innerHTML).format("MMMM Do YYYY, h:mm:ss a");
+    cell.innerHTML = date;
+  });
+</script>

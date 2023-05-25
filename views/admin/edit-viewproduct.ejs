@@ -1,168 +1,227 @@
 <section class="content-main">
-    <form action="/admin/edit-product/<%=editproduct._id %>" method="post" enctype="multipart/form-data">
-            <div class="row">
-                 
-                <div class="col-9">
-                    <div class="content-header">
-                        <h2 class="content-title">Edit Products</h2>
+  <form
+    action="/admin/edit-product/<%=editproduct._id %>"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <div class="row">
+      <div class="col-9">
+        <div class="content-header">
+          <h2 class="content-title">Edit Products</h2>
 
-                        <div>
-                          
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>Basic</h4>
-                        </div>
-                        <div class="card-body">
-                           
-                                <div class="mb-4">
-                                    <label for="product_name" class="form-label">Product title</label>
-                                    <input type="text" placeholder="Title" class="form-control" name="name" value="<%=editproduct.Productname%>">           
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Full description</label>
-                                    <input name="description" placeholder="Description" class="form-control" rows="4" value="<%=editproduct.ProductDescription%>" >
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="mb-4">
-                                            <label class="form-label">Price</label>
-                                            <div class="row gx-2">
-                                                <input placeholder="₹" type="text" name="price" class="form-control" value="<%=editproduct.Price%>" >
-                                            </div>
-<br>
-                                            <label class="form-label">Quantity</label>
-                                            <div class="row gx-2">
-                                                <input placeholder="" type="text" name="quantity" class="form-control" value="<%=editproduct.Quantity%>">
-                                            </div>
-<br>
-                                            <label for="cars">Category</label>
-           
-            <select class="form-select" name="category" id="cars">
-              <% procategory.forEach(function(procategory) { %>
-              <option ><%=procategory.CategoryName %></option>
-              <% } )%>
-            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                      
-                                    </div>
-                                 
-                                </div>
-                                
-                              
-                                <button type="submit" class="btn btn-md rounded font-sm hover-up" onclick="hideDiv()">Save changes</button>
-                            
-                        </div>
-                    </div> <!-- card end// -->
-                   
-                </div>
-                <div class="col-lg-3">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>Media</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="input-upload">
-                                <img src="/uploads/products/<%=editproduct.Image[0] %> " alt="">
-                                <input class="form-control" name="images" id="1" type="file" multiple>
-                                <input type="text" name="img1" id="img1" value="0" style="display: none;">
-                            </div>
-                        </div>
-                    </div> <!-- card end// -->
-                   
-                    <!-- card end// -->
-
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>Media</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="input-upload">
-                                <img src="/uploads/products/<%=editproduct.Image[1] %> " alt="">
-                                <input class="form-control" name="images" id="2" type="file"  >
-                                <input type="text" name="img2" id="img2" value="0" style="display: none;">
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-                <div class="col-lg-3">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>Media</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="input-upload">
-                                <img src="/uploads/products/<%=editproduct.Image[2] %> " alt="">
-                                <input class="form-control" onchange="function5(event)"  name="images" id="3" type="file" >
-                                <input type="text" name="img3" id="img3" value="0" style="display: none;">
-                            </div>
-                        </div>
-                    </div> <!-- card end// -->
-                   
-                    <!-- card end// -->
-
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4>Media</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="input-upload">
-                                <img src="/uploads/products/<%=editproduct.Image[3] %> " alt="">
-                                <input class="form-control" name="images" id="4" type="file" >
-                                <input type="text" name="img4" id="img4" value="0" style="display: none;">
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-          
-
-                
+          <div></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Basic</h4>
+          </div>
+          <div class="card-body">
+            <div class="mb-4">
+              <label for="product_name" class="form-label">Product title</label>
+              <input
+                type="text"
+                placeholder="Title"
+                class="form-control"
+                name="name"
+                value="<%=editproduct.Productname%>"
+              />
             </div>
-            </form>
-            
-        </section>
+            <div class="mb-4">
+              <label class="form-label">Full description</label>
+              <input
+                name="description"
+                placeholder="Description"
+                class="form-control"
+                rows="4"
+                value="<%=editproduct.ProductDescription%>"
+              />
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label class="form-label">Price</label>
+                  <div class="row gx-2">
+                    <input
+                      placeholder="₹"
+                      type="text"
+                      name="price"
+                      class="form-control"
+                      value="<%=editproduct.Price%>"
+                    />
+                  </div>
+                  <br />
+                  <label class="form-label">Quantity</label>
+                  <div class="row gx-2">
+                    <input
+                      placeholder=""
+                      type="text"
+                      name="quantity"
+                      class="form-control"
+                      value="<%=editproduct.Quantity%>"
+                    />
+                  </div>
+                  <br />
+                  <label for="cars">Category</label>
 
-         <script>
-              
-              function hideDiv() {
-    document.getElementById('alert').style.display = 'none';
+                  <select class="form-select" name="category" id="cars">
+                    <% procategory.forEach(function(procategory) { %>
+                    <option><%=procategory.CategoryName %></option>
+                    <% } )%>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4"></div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-md rounded font-sm hover-up"
+              onclick="hideDiv()"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
+        <!-- card end// -->
+      </div>
+      <div class="col-lg-3">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            <div class="input-upload">
+              <img src="/uploads/products/<%=editproduct.Image[0] %> " alt="" />
+              <input
+                class="form-control"
+                name="images"
+                id="1"
+                type="file"
+                multiple
+              />
+              <input
+                type="text"
+                name="img1"
+                id="img1"
+                value="0"
+                style="display: none"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- card end// -->
+
+        <!-- card end// -->
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            <div class="input-upload">
+              <img src="/uploads/products/<%=editproduct.Image[1] %> " alt="" />
+              <input class="form-control" name="images" id="2" type="file" />
+              <input
+                type="text"
+                name="img2"
+                id="img2"
+                value="0"
+                style="display: none"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            <div class="input-upload">
+              <img src="/uploads/products/<%=editproduct.Image[2] %> " alt="" />
+              <input
+                class="form-control"
+                onchange="function5(event)"
+                name="images"
+                id="3"
+                type="file"
+              />
+              <input
+                type="text"
+                name="img3"
+                id="img3"
+                value="0"
+                style="display: none"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- card end// -->
+
+        <!-- card end// -->
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            <div class="input-upload">
+              <img src="/uploads/products/<%=editproduct.Image[3] %> " alt="" />
+              <input class="form-control" name="images" id="4" type="file" />
+              <input
+                type="text"
+                name="img4"
+                id="img4"
+                value="0"
+                style="display: none"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+<script>
+  function hideDiv() {
+    document.getElementById("alert").style.display = "none";
   }
-  
+
   setTimeout(hideDiv, 1000); // Hide the div after 3 seconds (3000 milliseconds)
-              function function5(event){
-              document.getElementById('img1').src=URL.createObjectURL(event.target.files[0] )
-              document.getElementById('img2').src=URL.createObjectURL(event.target.files[1])
-              document.getElementById('img3').src=URL.createObjectURL(event.target.files[2])
-              document.getElementById('img4').src=URL.createObjectURL(event.target.files[3])
-           
-          }
-  
-            </script>
+  function function5(event) {
+    document.getElementById("img1").src = URL.createObjectURL(
+      event.target.files[0]
+    );
+    document.getElementById("img2").src = URL.createObjectURL(
+      event.target.files[1]
+    );
+    document.getElementById("img3").src = URL.createObjectURL(
+      event.target.files[2]
+    );
+    document.getElementById("img4").src = URL.createObjectURL(
+      event.target.files[3]
+    );
+  }
+</script>
 
+<script>
+  document.getElementById("1").onchange = () => {
+    document.getElementById("img1").value = "1";
+  };
 
-        <script>
-            document.getElementById('1').onchange = ()=>{
-                document.getElementById('img1').value = "1"
-            }
+  document.getElementById("2").onchange = () => {
+    document.getElementById("img2").value = "1";
+  };
 
-            document.getElementById('2').onchange = ()=>{
-                document.getElementById('img2').value = "1"
-            }
+  document.getElementById("3").onchange = () => {
+    document.getElementById("img3").value = "1";
+  };
 
-            document.getElementById('3').onchange = ()=>{
-                document.getElementById('img3').value = "1"
-            }
-
-            document.getElementById('4').onchange = ()=>{
-                document.getElementById('img4').value = "1"
-            }
-        </script>
+  document.getElementById("4").onchange = () => {
+    document.getElementById("img4").value = "1";
+  };
+</script>
