@@ -1,5 +1,10 @@
 <section class="content-main">
-  <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
+  <form
+    action="/admin/add-product"
+    method="POST"
+    enctype="multipart/form-data"
+    onsubmit="return validateForm(event)"
+  >
     <div class="row">
       <div class="col-9">
         <div class="content-header">
@@ -26,14 +31,6 @@
               />
               <div id="titleError" class="invalid-feedback"></div>
             </div>
-            <!-- <div class="card-body">
-                                        <div class="mb-4">
-                                            <label for="product_name" class="form-label">Product Name</label>
-                                            <input type="text" placeholder="Title" class="form-control" name="title" id="name"
-                                                required />
-                                            <div id="titleError" class="invalid-feedback"></div>
-                                        </div> -->
-
             <div class="mb-4">
               <label class="form-label" for="description">Description</label>
               <input
@@ -45,13 +42,6 @@
               />
               <div id="descriptionError" class="invalid-feedback"></div>
             </div>
-            <!-- <div class="mb-4">
-                                        <label class="form-label">Full description</label>
-                                        <textarea name="description" placeholder="Description" class="form-control"
-                                            id="description" rows="4" required></textarea>
-                                        <div id="descriptionError" class="invalid-feedback"></div>
-                                    </div> -->
-
             <div class="row">
               <div class="col-lg-4">
                 <div class="mb-4">
@@ -66,12 +56,6 @@
                     />
                     <div id="priceError" class="invalid-feedback"></div>
                   </div>
-                  <!-- <div class="row gx-2">
-                                                    <input placeholder="₹" type="number" name="price" id="Price"
-                                                        class="form-control" required />
-                                                    <div id="priceError" class="invalid-feedback"></div>
-                                                </div> -->
-
                   <br />
                   <label class="form-label" for="quantity">Quantity</label>
                   <div class="row gx-2">
@@ -84,12 +68,6 @@
                     />
                     <div id="stockError" class="invalid-feedback"></div>
                   </div>
-                  <!-- <div class="row gx-2">
-                                                    <input placeholder="" type="number" name="quantity" id="quantity"
-                                                        class="form-control" required />
-                                                    <div id="stockError" class="invalid-feedback"></div>
-                                                </div> -->
-
                   <br />
                   <label class="form-label" for="Category">Category</label>
                   <select
@@ -184,25 +162,41 @@
     </div>
   </form>
 </section>
-
 <script>
-  function hideDiv() {
-    document.getElementById("alert").style.display = "none";
+  function validateForm() {
+  var productNameInput = document.getElementById('name');
+  var priceInput = document.getElementById('price');
+  var quantityInput = document.getElementById('quantity');
+  
+  var productName = productNameInput.value.trim();
+  var price = parseFloat(priceInput.value);
+  var quantity = parseInt(quantityInput.value);
+
+  // Validate product name
+  if (!/^[A-Z][a-z]*$/.test(productName)) {
+    productNameInput.classList.add('is-invalid');
+    document.getElementById('titleError').innerHTML =
+      'Product name should start with a capital letter and contain only letters.';
+    return false;
   }
 
-  setTimeout(hideDiv, 1000); // Hide the div after 3 seconds (3000 milliseconds)
-  function function5(event) {
-    document.getElementById("img1").src = URL.createObjectURL(
-      event.target.files[0]
-    );
-    document.getElementById("img2").src = URL.createObjectURL(
-      event.target.files[1]
-    );
-    document.getElementById("img3").src = URL.createObjectURL(
-      event.target.files[2]
-    );
-    document.getElementById("img4").src = URL.createObjectURL(
-      event.target.files[3]
-    );
+  // Validate price
+  if (isNaN(price) || price <= 0) {
+    priceInput.classList.add('is-invalid');
+    document.getElementById('priceError').innerHTML =
+      'Price must be a number greater than 0.';
+    return false;
   }
+
+  // Validate quantity
+  if (isNaN(quantity) || quantity <= 0) {
+    quantityInput.classList.add('is-invalid');
+    document.getElementById('stockError').innerHTML =
+      'Quantity must be a number greater than 0.';
+    return false;
+  }
+
+  return true;
+}
+
 </script>

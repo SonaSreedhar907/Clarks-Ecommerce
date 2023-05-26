@@ -1,4 +1,3 @@
-
 <section class="content-main">
   <div class="content-header">
     <div>
@@ -74,14 +73,10 @@
       <div class="card mb-4">
         <article class="card-body">
           <h5 class="card-title">Sale statistics</h5>
-          <canvas id="BarChart" height="120px">
-
-          </canvas>
+            <canvas id="myChart1" height="120px"></canvas>
+          
         </article>
       </div>
-
-
-
       <div class="row">
         <div class="col-xl-8 col-lg-12">
           <div class="card mb-4">
@@ -93,8 +88,6 @@
           </div>
           
         </div>
-
-
         <div class="row">
           <div class="col-xl-8 col-lg-12">
             <div class="card mb-4">
@@ -106,19 +99,16 @@
             </div>
             
           </div>
-
-     
-
-
-          
+          <div>
+            <p style="visibility: hidden" id="days">
+             <%= JSON.stringify(locals.ordersPerDay) %>
+            </p>
+          </div>
 </section>
 <footer class="main-footer font-xs">
   <div class="row pb-30 pt-15">
-    <div class="col-sm-6">
-      <script>
-        document.write(new Date().getFullYear());
-      </script>
-      ©, Evara - HTML Ecommerce Template .
+    <div class="col-sm-6"> 
+     
     </div>
     <div class="col-sm-6">
       <div class="text-sm-end"></div>
@@ -136,8 +126,6 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 
 
@@ -146,10 +134,62 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 
-<script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   
+  <script>
+    document.write(new Date());
+  
+    // Sample data
+    var xValues = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+    var yValues = [0, 5, 10, 15, 20, 25, 50];
+    var buyed = [];
+    let daysData = JSON.parse(document.getElementById('days').innerHTML);
+    console.log(daysData,"ssssss");
+  
+    for (let i = 0; i < xValues.length; i++) {
+      if (xValues[i] in daysData) {
+        buyed.push(daysData[xValues[i]]);
+      } else {
+        buyed.push(0);
+      }
+    }
+  console.log(buyed,"baaaaaaai");
+    new Chart('myChart1', {
+      type: 'bar',
+      data: {
+        labels: xValues,
+        datasets: [
+          {
+            fill: false,
+            lineTension: 0,
+            backgroundColor: 'red',
+            borderColor: 'rgba(0,0,255,0.1)',
+            data: buyed,
+            label: 'Sales',
+          },
+        ],
+      },
+      options: {
+        legend: { display: false },
+        scales: {
+          yAxes: [{ ticks: { min: 0, max: 25 } }],
+        },
+      },
+    });
+  
+   
+  </script>
 
-
+<script>
   const countArray = $('#dataId').data('value')
   const catArray = $('#catId').data('value')
 
@@ -188,9 +228,7 @@ var myChart = new Chart("donutchart", {
   options: options,
 });
 
-  yValues=[<%= newArry %>]
-  console.log(yValues);
-
+  
    
   var xValues = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
   

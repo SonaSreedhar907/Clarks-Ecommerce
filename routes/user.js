@@ -16,7 +16,11 @@ router.route("/signup").get(controller.showSignup).post(controller.postSignup);
 router.get("/shop", authentication.userAuth, controller.shopView);
 
 //user category
-router.get("/shop/:id", authentication.userAuth, controller.categoryWork);
+router.get('/category/:id',controller.getCategory)
+
+
+//sort
+router.get('/sort',authentication.userAuth,controller.postSort)
 
 //user logout
 router.get("/logout", controller.userlogout);
@@ -50,15 +54,17 @@ router.post(
 //user wish-List-management
 router.get("/wishlist/:id", authentication.userAuth, controller.getWishlist);
 
+//view-wishlist
 router.get("/view-wishlist", authentication.userAuth, controller.viewWishList);
 
+//delete-wishlist
 router.delete(
   "/delete_wishlist",
   authentication.userAuth,
   controller.deleteWishList
 );
 
-//user profile
+//get profile
 router.get("/profile", authentication.userAuth, controller.profile);
 
 router.post("/profile", authentication.userAuth, controller.postAddress);
@@ -119,5 +125,11 @@ router.post(
   authentication.userAuth,
   controller.verifyPayment
 );
+
+//search item 
+router.get('/search',controller.search)
+
+//search empty
+router.get('/searchEmpty',controller.searchempty)
 
 module.exports = router;
