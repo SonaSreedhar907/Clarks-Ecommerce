@@ -11,6 +11,7 @@ const adminCredential = {
 let adminStatus;
 
 module.exports = {
+  //dashboard admin
   displayDashboard: async (req, res) => {
     try {
       const adminStatus = req.session.admin;
@@ -79,6 +80,7 @@ module.exports = {
     }
   },
 
+  //admin login
   getAdminLogin: (req, res) => {
     if (req.session.adminloggedIn) {
       console.log(adminloggedIn, "shaksjaksjaslkjaska");
@@ -94,6 +96,7 @@ module.exports = {
     }
   },
 
+  //post admin login
   postAdminLogin: (req, res) => {
     if (
       req.body.email == adminCredential.email &&
@@ -110,6 +113,7 @@ module.exports = {
     }
   },
 
+  //admin logout
   adminLogout: (req, res) => {
     req.session.admin = null;
     adminStatus = false;
@@ -117,6 +121,7 @@ module.exports = {
     res.render("admin/login", { layout: "adminLayout", adminStatus });
   },
 
+  //user list
   getUserlist: (req, res) => {
     adminHelper.listUsers().then((user) => {
       res.render("admin/view-users", {
@@ -127,6 +132,7 @@ module.exports = {
     });
   },
 
+  //products add
   addProducts: (req, res) => {
     adminHelper.findAllcategories().then((availCategory) => {
       res.render("admin/add-product", {
@@ -137,6 +143,7 @@ module.exports = {
     });
   },
 
+  //post the products
   postProducts: (req, res) => {
     console.log(req.body);
     let images = req.files.map((files) => files.filename);
@@ -146,6 +153,7 @@ module.exports = {
     });
   },
 
+  //view the products
   viewProducts: async (req, res) => {
     const pageNum = req.query.page;
     const currentPage = pageNum;
@@ -163,6 +171,7 @@ module.exports = {
     });
   },
 
+  //category get
   getCategory: (req, res) => {
     adminHelper.viewAddCategory().then((response) => {
       let viewCategory = response;
@@ -174,12 +183,14 @@ module.exports = {
     });
   },
 
+  //post the category
   postCategory: (req, res) => {
     adminHelper.addCategory(req.body).then((response) => {
       res.redirect("/admin/add-category");
     });
   },
 
+  //delete the category
   deleteCategory: (req, res) => {
     adminHelper.delCategory(req.params.id).then((response) => {
       res.redirect("/admin/add-category");
@@ -187,7 +198,6 @@ module.exports = {
   },
 
   //edit product
-
   editProduct: (req, res) => {
     adminHelper.viewAddCategory().then((response) => {
       var procategory = response;
@@ -206,7 +216,7 @@ module.exports = {
     });
   },
 
-  //posteditaddproduct
+  //post edit addproduct
   post_EditProduct: (req, res) => {
     console.log(req.body);
     console.log(req.file);
@@ -229,13 +239,13 @@ module.exports = {
   },
 
   // block user
-
   blockTheUser: (req, res) => {
     adminHelper.blockUser(req.params.id).then((response) => {
       res.redirect("/admin/view-users");
     });
   },
 
+  //unblock the user
   unblockTheUser: (req, res) => {
     adminHelper.UnblockUser(req.params.id).then((response) => {
       res.redirect("/admin/view-users");
@@ -263,6 +273,7 @@ module.exports = {
       });
   },
 
+  //orders view in admin
   orders: async (req, res) => {
     const pageNum = req.query.page;
     const currentPage = pageNum;
@@ -281,6 +292,7 @@ module.exports = {
     });
   },
 
+  //display the products in orders
   getOrderProducts: async (req, res) => {
     let order = await userhelpers.getShipProducts(req.params.id);
     userhelpers.getShipAddress(req.params.id).then(async (response) => {
@@ -293,6 +305,7 @@ module.exports = {
     });
   },
 
+  //status of products in orders
   postEditStatus: (req, res) => {
     adminHelper
       .updateStatus(req.params.id, req.body)
@@ -304,10 +317,12 @@ module.exports = {
       });
   },
 
+  //coupon
   addCoupons: (req, res) => {
     res.render("admin/add-coupons", { layout: "adminLayout", adminStatus });
   },
 
+  //add new coupon
   addNewCoupon: (req, res) => {
     adminHelper.addNewCoupon(req.body).then((response) => {
       console.log(response, "oomg");
@@ -315,6 +330,7 @@ module.exports = {
     });
   },
 
+  //view the coupon
   viewCoupon: async (req, res) => {
     const pageNum = req.query.page;
     const currentPage = pageNum;
@@ -353,7 +369,6 @@ module.exports = {
 
   editCoupon: (req, res) => {
     adminHelper.editCoupon(req.params.id).then((response) => {
-      console.log(response, "@@@@@@@@@@@@@@@@@@@@@");
       res.render("admin/edit-coupon", {
         layout: "adminLayout",
         adminStatus,
@@ -363,9 +378,6 @@ module.exports = {
   },
 
   postEditCoupon: (req, res) => {
-    console.log("ooooooooooooooooooooooooo");
-    console.log(req.params.id);
-    console.log(req.body);
     adminHelper.postEditCoupon(req.params.id, req.body).then((response) => {
       console.log(response);
       res.redirect("/admin/view-coupons");
@@ -374,25 +386,11 @@ module.exports = {
 
   deleteCoupon: (req, res) => {
     adminHelper.deleteCoupon(req.params.id).then((response) => {
-      console.log(req.params.id, "888888888888888888");
-
       res.redirect("/admin/view-coupons");
     });
   },
-  // blockTheCoupon: (req,res)=>{
-  //   adminHelper.blockCoupon(req.params.id).then((response)=>{
-  //     res.redirect('/admin/view-coupons')
-  //   })
-  // },
-
-  // unblockTheCoupon: (req,res)=>{
-  //   adminHelper.UnblockCoupon(req.params.id).then((response)=>{
-  //     res.redirect('/admin/view-coupons')
-  //   })
-  // },
 
   //sales
-
   getSales: async (req, res) => {
     userhelpers
       .getAllSales()
@@ -411,6 +409,7 @@ module.exports = {
       });
   },
 
+  //sales filter
   getSalesFilter: async (req, res) => {
     console.log("Date details", req.body);
     const date1 = new Date(req.body.startDate);
@@ -430,39 +429,5 @@ module.exports = {
       .catch((error) => {
         console.error(`The operation failed with error: ${error.message}`);
       });
-  },
-
-  getAddoffer: async (req, res) => {
-    try {
-      const products = await adminHelper.getViewProducts();
-      const categories = await adminHelper.findAllcategories();
-      console.log(categories, "categoreis");
-      res.render("admin/add-offer", {
-        products,
-        categories,
-        layout: "adminLayout",
-        adminStatus,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  },
-  postAddoffer: (req, res) => {
-    try {
-      // const { offerType, offerValue, offerCode, product, category } = req.body;
-      console.log(req.body, "reqqqqqqqqqqq");
-      let proId = req.body.product;
-      console.log(proId);
-      adminHelper.postAddOffers(req.body).then((response) => {
-        console.log("response._id", response._id);
-        adminHelper.updateProOffer(proId, response._id).then((response) => {
-          res.redirect("/admin/offer-list");
-        });
-      });
-
-      // res.status(200).send("Offer added successfully");
-    } catch (error) {
-      console.log(error);
-    }
   },
 };
